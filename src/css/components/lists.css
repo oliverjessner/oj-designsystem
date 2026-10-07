@@ -1,0 +1,102 @@
+.oj-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.oj-list-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--oj-space-3);
+  padding-block: var(--oj-space-3);
+  border-block-end: 1px solid var(--oj-border-subtle);
+}
+button.oj-list-item,
+a.oj-list-item {
+  box-sizing: border-box;
+  inline-size: 100%;
+  border: 0;
+  border-block-end: 1px solid var(--oj-border-subtle);
+  background: transparent;
+  color: var(--oj-text-soft);
+  font-family: var(--oj-font-sans);
+  font-size: var(--oj-text-sm);
+  line-height: var(--oj-leading-normal);
+  text-align: start;
+  text-decoration: none;
+  cursor: pointer;
+}
+.oj-list-item:last-child {
+  border-block-end: 0;
+}
+.oj-list-interactive .oj-list-item {
+  padding-inline: var(--oj-space-3);
+  border-radius: var(--oj-radius-sm);
+}
+.oj-list-interactive
+  .oj-list-item:where(:not(:disabled):not([aria-disabled='true'])):hover {
+  background: var(--oj-surface-hover);
+}
+.oj-list-interactive
+  .oj-list-item:where(
+    :not(:disabled):not([aria-disabled='true'])
+  )[aria-selected='true'] {
+  background: var(--oj-accent-subtle);
+}
+.oj-list-item:disabled,
+.oj-list-item[aria-disabled='true'] {
+  color: var(--oj-text-disabled);
+  background: transparent;
+  cursor: not-allowed;
+}
+.oj-list-item:disabled :where(*),
+.oj-list-item[aria-disabled='true'] :where(*) {
+  color: inherit;
+}
+.oj-key-value,
+.oj-definition-list {
+  display: grid;
+  grid-template-columns: minmax(6rem, 1fr) minmax(0, 2fr);
+  gap: var(--oj-space-2) var(--oj-space-4);
+  margin: 0;
+  font-size: var(--oj-text-sm);
+  line-height: var(--oj-leading-normal);
+}
+.oj-key-value > div,
+.oj-definition-list > div {
+  display: contents;
+}
+.oj-key-value dt,
+.oj-definition-list dt {
+  color: var(--oj-text-muted);
+}
+.oj-key-value dd,
+.oj-definition-list dd {
+  margin: 0;
+  color: var(--oj-text);
+  overflow-wrap: anywhere;
+}
+.oj-path {
+  box-sizing: border-box;
+  min-inline-size: 0;
+  padding: var(--oj-space-2) var(--oj-space-3);
+  border: 1px solid var(--oj-border);
+  border-radius: var(--oj-radius-md);
+  background: var(--oj-bg);
+  color: var(--oj-text-soft);
+  font-family: var(--oj-font-mono);
+  font-size: var(--oj-text-sm);
+  line-height: var(--oj-leading-normal);
+  overflow-wrap: anywhere;
+}
+@media (max-width: 30rem) {
+  .oj-key-value,
+  .oj-definition-list {
+    grid-template-columns: 1fr;
+  }
+  .oj-key-value dd,
+  .oj-definition-list dd {
+    margin-block-end: var(--oj-space-2);
+  }
+}

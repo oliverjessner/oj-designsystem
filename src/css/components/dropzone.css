@@ -1,0 +1,59 @@
+.oj-dropzone {
+  box-sizing: border-box;
+  position: relative;
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: var(--oj-space-3);
+  min-block-size: 9rem;
+  padding: var(--oj-space-6);
+  border: 1px dashed var(--oj-border-strong);
+  border-radius: var(--oj-radius-lg);
+  background: var(--oj-surface);
+  color: var(--oj-text-muted);
+  font-size: var(--oj-text-sm);
+  text-align: center;
+  transition:
+    border-color var(--oj-duration-fast) var(--oj-ease),
+    background-color var(--oj-duration-fast) var(--oj-ease);
+}
+.oj-dropzone:hover {
+  border-color: var(--oj-text-muted);
+  background: var(--oj-surface-hover);
+}
+.oj-dropzone[data-oj-state='drag-active'] {
+  border-style: solid;
+  border-color: var(--oj-accent-border);
+  background: var(--oj-accent-soft);
+  color: var(--oj-text);
+}
+.oj-dropzone[aria-disabled='true'] {
+  border-color: var(--oj-border);
+  background: var(--oj-bg);
+  color: var(--oj-text-disabled);
+  cursor: not-allowed;
+}
+.oj-dropzone[data-oj-state='loading'],
+.oj-dropzone[aria-busy='true'] {
+  cursor: progress;
+}
+.oj-accordion {
+  border: 1px solid var(--oj-border);
+  border-radius: var(--oj-radius-md);
+  background: var(--oj-surface);
+}
+.oj-accordion summary {
+  min-block-size: var(--oj-control-height);
+  padding: var(--oj-space-3) var(--oj-space-4);
+  color: var(--oj-text-soft);
+  font-size: var(--oj-text-sm);
+  font-weight: var(--oj-weight-semibold);
+  cursor: pointer;
+}
+.oj-accordion[open] summary {
+  border-block-end: 1px solid var(--oj-border);
+  color: var(--oj-text);
+}
+.oj-accordion-body {
+  padding: var(--oj-space-4);
+}

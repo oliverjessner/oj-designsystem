@@ -1,0 +1,55 @@
+.oj-dialog {
+  box-sizing: border-box;
+  inline-size: min(36rem, calc(100vw - var(--oj-space-8)));
+  max-block-size: calc(100dvh - var(--oj-space-8));
+  padding: 0;
+  border: 1px solid var(--oj-border-strong);
+  border-radius: var(--oj-radius-lg);
+  background: var(--oj-surface);
+  color: var(--oj-text);
+  color-scheme: dark;
+  font-family: var(--oj-font-sans);
+  font-size: var(--oj-text-md);
+  line-height: var(--oj-leading-normal);
+  box-shadow: var(--oj-shadow-dialog);
+  overflow: auto;
+  z-index: var(--oj-z-dialog);
+}
+.oj-dialog::backdrop {
+  background: rgb(0 0 0 / 64%);
+}
+.oj-dialog-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--oj-space-3);
+  padding: var(--oj-space-5);
+  border-block-end: 1px solid var(--oj-border);
+}
+.oj-dialog-title {
+  margin: 0;
+  font-size: var(--oj-text-lg);
+  font-weight: var(--oj-weight-bold);
+  line-height: var(--oj-leading-tight);
+}
+.oj-dialog-body {
+  padding: var(--oj-space-5);
+  overflow-wrap: anywhere;
+}
+.oj-dialog-body p {
+  margin: 0;
+}
+.oj-dialog-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--oj-space-2);
+  padding: var(--oj-space-4) var(--oj-space-5);
+  border-block-start: 1px solid var(--oj-border);
+}
+@media (max-width: 30rem) {
+  .oj-dialog {
+    inline-size: calc(100vw - var(--oj-space-4));
+    max-block-size: calc(100dvh - var(--oj-space-4));
+  }
+}

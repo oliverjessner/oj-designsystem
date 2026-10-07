@@ -1,0 +1,67 @@
+.oj-progress {
+  box-sizing: border-box;
+  display: block;
+  appearance: none;
+  inline-size: 100%;
+  block-size: var(--oj-space-2);
+  overflow: hidden;
+  border: 0;
+  border-radius: var(--oj-radius-sm);
+  background: var(--oj-surface-active);
+  accent-color: var(--oj-accent);
+}
+.oj-progress::-webkit-progress-bar {
+  background: var(--oj-surface-active);
+  border-radius: var(--oj-radius-sm);
+}
+.oj-progress::-webkit-progress-value {
+  background: var(--oj-accent);
+  border-radius: var(--oj-radius-sm);
+}
+.oj-progress::-moz-progress-bar {
+  background: var(--oj-accent);
+  border-radius: var(--oj-radius-sm);
+}
+.oj-progress-indeterminate {
+  position: relative;
+}
+.oj-progress-indeterminate::before {
+  content: '';
+  display: block;
+  inline-size: 35%;
+  block-size: 100%;
+  background: var(--oj-accent);
+  border-radius: var(--oj-radius-sm);
+  animation: oj-progress-slide 1.2s var(--oj-ease) infinite alternate;
+}
+.oj-spinner {
+  box-sizing: border-box;
+  display: inline-block;
+  inline-size: 1rem;
+  block-size: 1rem;
+  flex: 0 0 auto;
+  border: 2px solid var(--oj-border-strong);
+  border-block-start-color: var(--oj-accent-text);
+  border-radius: var(--oj-radius-full);
+  animation: oj-spin 800ms linear infinite;
+}
+.oj-skeleton {
+  display: block;
+  min-block-size: 1rem;
+  border-radius: var(--oj-radius-sm);
+  background: var(--oj-surface-active);
+  animation: oj-skeleton-fade 1.2s var(--oj-ease) infinite alternate;
+}
+@keyframes oj-progress-slide {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(186%);
+  }
+}
+@keyframes oj-skeleton-fade {
+  to {
+    opacity: 0.55;
+  }
+}

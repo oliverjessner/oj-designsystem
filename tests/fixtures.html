@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en" data-oj-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>OJ browser verification</title>
+    <link rel="stylesheet" href="/dist/styles.css" />
+  </head>
+  <body class="oj-app">
+    <main class="oj-container oj-stack">
+      <h1 class="oj-heading-1">Component verification</h1>
+      <p class="oj-muted">
+        Native controls, readable text and keyboard behavior.
+      </p>
+      <section class="oj-panel oj-stack" aria-label="Controls">
+        <div class="oj-toolbar">
+          <button class="oj-button oj-button-primary">Save changes</button>
+          <button class="oj-button oj-button-secondary">Cancel</button>
+          <button class="oj-button oj-button-danger">Delete</button>
+          <button
+            class="oj-icon-button"
+            aria-label="Settings"
+            data-oj-tooltip="Settings"
+          >
+            <i class="fa-solid fa-gear" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div class="oj-field">
+          <label class="oj-label" for="name">Project name</label
+          ><input id="name" class="oj-input" value="Research" />
+          <p class="oj-helper">Give the project a descriptive name.</p>
+        </div>
+        <div class="oj-field">
+          <label class="oj-label" for="search">Search</label
+          ><input id="search" class="oj-input" type="search" />
+        </div>
+        <div class="oj-field">
+          <label class="oj-label" for="format">Format</label
+          ><select id="format" class="oj-select">
+            <option>JSON</option>
+            <option>CSV</option>
+          </select>
+        </div>
+        <label class="oj-switch"
+          ><input type="checkbox" checked /><span
+            class="oj-switch-track"
+            aria-hidden="true"
+          ></span
+          ><span>Watch folder</span></label
+        >
+        <fieldset class="oj-segmented">
+          <legend class="oj-sr-only">Output format</legend>
+          <label
+            ><input type="radio" name="output" checked /><span
+              >JSON</span
+            ></label
+          ><label><input type="radio" name="output" /><span>CSV</span></label>
+        </fieldset>
+      </section>
+      <section class="oj-panel" aria-label="Tabbed data">
+        <div class="oj-tabs" data-oj-tabs>
+          <div class="oj-tab-list" role="tablist" aria-label="Project views">
+            <button class="oj-tab" role="tab" aria-selected="true">
+              Overview</button
+            ><button class="oj-tab" role="tab">History</button
+            ><button class="oj-tab" role="tab" disabled>Unavailable</button>
+          </div>
+          <div class="oj-tab-panel" role="tabpanel">
+            <p>Current project overview.</p>
+          </div>
+          <div class="oj-tab-panel" role="tabpanel">
+            <p>History of changes.</p>
+          </div>
+          <div class="oj-tab-panel" role="tabpanel">
+            <p>Unavailable content.</p>
+          </div>
+        </div>
+      </section>
+      <div class="oj-dropdown" data-oj-dropdown>
+        <button class="oj-button oj-button-secondary" data-oj-dropdown-trigger>
+          Actions
+        </button>
+        <div
+          class="oj-menu"
+          data-oj-dropdown-menu
+          role="menu"
+          aria-label="Project actions"
+          hidden
+        >
+          <button class="oj-menu-item" role="menuitem" data-oj-value="open">
+            Open</button
+          ><button class="oj-menu-item" role="menuitem" disabled>
+            Unavailable</button
+          ><button
+            class="oj-menu-item"
+            role="menuitem"
+            data-oj-value="duplicate"
+          >
+            Duplicate
+          </button>
+        </div>
+      </div>
+      <button
+        class="oj-button oj-button-secondary"
+        data-oj-dialog-open="settings"
+      >
+        Open dialog
+      </button>
+      <dialog
+        id="settings"
+        class="oj-dialog"
+        data-oj-dialog
+        aria-labelledby="dialog-title"
+      >
+        <div class="oj-dialog-body oj-stack">
+          <h2 id="dialog-title" class="oj-heading-2">Settings</h2>
+          <label class="oj-label" for="dialog-name">Name</label
+          ><input id="dialog-name" class="oj-input" autofocus />
+          <label class="oj-label" for="dialog-note">Note</label>
+          <input id="dialog-note" class="oj-input" />
+          <button class="oj-button oj-button-secondary" data-oj-dialog-close>
+            Close
+          </button>
+        </div>
+      </dialog>
+      <div
+        class="oj-table-container"
+        tabindex="0"
+        role="region"
+        aria-label="Projects"
+      >
+        <table class="oj-table oj-table-hover">
+          <caption>
+            Project files
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">File</th>
+              <th scope="col">Status</th>
+              <th scope="col" class="oj-numeric">Size</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><a class="oj-link" href="#name">report.json</a></td>
+              <td><span class="oj-badge oj-badge-success">Ready</span></td>
+              <td class="oj-numeric">12 KB</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <article class="oj-prose">
+        <h2>Readable editorial context</h2>
+        <p>
+          Comfortaa carries the shared identity. Longer text receives a relaxed
+          line height and a controlled measure, while technical values use
+          JetBrains Mono.
+        </p>
+        <blockquote><p>Function over decoration.</p></blockquote>
+        <pre
+          class="oj-code-block"
+        ><code>npm install oj-designsystem</code></pre>
+      </article>
+    </main>
+    <script type="module">
+      import * as oj from 'oj-designsystem';
+      window.oj = oj;
+      window.cleanupOJ = oj.initOJ();
+    </script>
+  </body>
+</html>

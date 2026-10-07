@@ -1,0 +1,174 @@
+.oj-prose {
+  max-inline-size: var(--oj-prose-width);
+  color: var(--oj-text-soft);
+  font-family: var(--oj-font-sans);
+  font-size: var(--oj-text-lg);
+  line-height: var(--oj-leading-relaxed);
+  overflow-wrap: anywhere;
+}
+.oj-prose > * + * {
+  margin-block-start: var(--oj-space-5);
+}
+.oj-prose :where(h1, h2, h3, h4) {
+  color: var(--oj-text);
+  font-weight: var(--oj-weight-bold);
+  line-height: var(--oj-leading-tight);
+  text-wrap: balance;
+}
+.oj-prose h1 {
+  font-size: var(--oj-text-3xl);
+}
+.oj-prose h2 {
+  font-size: var(--oj-text-2xl);
+  margin-block-start: var(--oj-space-10);
+}
+.oj-prose h3 {
+  font-size: var(--oj-text-xl);
+  margin-block-start: var(--oj-space-8);
+}
+.oj-prose h4 {
+  font-size: var(--oj-text-lg);
+}
+.oj-prose :where(p, ul, ol, blockquote, figure, pre) {
+  margin-block-end: 0;
+}
+.oj-prose :where(ul, ol) {
+  padding-inline-start: var(--oj-space-6);
+}
+.oj-prose li + li {
+  margin-block-start: var(--oj-space-2);
+}
+.oj-prose a {
+  color: var(--oj-accent-text);
+  text-underline-offset: 0.2em;
+}
+.oj-prose a:hover {
+  color: var(--oj-text);
+}
+.oj-prose blockquote {
+  margin-inline: 0;
+  padding-inline-start: var(--oj-space-4);
+  border-inline-start: 3px solid var(--oj-border-strong);
+  color: var(--oj-text-muted);
+}
+.oj-prose :where(code, kbd),
+.oj-inline-code {
+  padding: 0.12em 0.35em;
+  border: 1px solid var(--oj-border);
+  border-radius: var(--oj-radius-sm);
+  background: var(--oj-surface);
+  color: var(--oj-text);
+  font-family: var(--oj-font-mono);
+  font-size: 0.875em;
+}
+.oj-code-block,
+.oj-prose pre {
+  box-sizing: border-box;
+  max-inline-size: 100%;
+  margin: 0;
+  padding: var(--oj-space-4);
+  overflow: auto;
+  border: 1px solid var(--oj-border);
+  border-radius: var(--oj-radius-md);
+  background: var(--oj-bg-elevated);
+  color: var(--oj-text-soft);
+  font-family: var(--oj-font-mono);
+  font-size: var(--oj-text-sm);
+  line-height: var(--oj-leading-normal);
+  tab-size: 2;
+}
+.oj-prose pre:not(:first-child) {
+  margin-block-start: var(--oj-space-5);
+}
+.oj-code-block code,
+.oj-prose pre code {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font-size: inherit;
+}
+.oj-prose img {
+  max-inline-size: 100%;
+  block-size: auto;
+  border-radius: var(--oj-radius-md);
+}
+.oj-prose figcaption {
+  margin-block-start: var(--oj-space-2);
+  color: var(--oj-text-muted);
+  font-size: var(--oj-text-sm);
+  line-height: var(--oj-leading-normal);
+}
+.oj-prose table {
+  overflow-wrap: normal;
+  display: block;
+  max-inline-size: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+  font-size: var(--oj-text-md);
+  line-height: var(--oj-leading-normal);
+}
+.oj-prose :where(th, td) {
+  padding: var(--oj-space-3);
+  border-block-end: 1px solid var(--oj-border);
+  text-align: start;
+}
+.oj-prose th {
+  background: var(--oj-surface);
+  color: var(--oj-text);
+  font-weight: var(--oj-weight-semibold);
+}
+.oj-byline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--oj-space-2);
+  color: var(--oj-text-muted);
+  font-size: var(--oj-text-sm);
+}
+.oj-callout {
+  padding: var(--oj-space-4);
+  border: 1px solid var(--oj-border);
+  border-inline-start: 3px solid var(--oj-accent-border);
+  border-radius: var(--oj-radius-md);
+  background: var(--oj-accent-subtle);
+  color: var(--oj-text-soft);
+}
+.oj-callout-info {
+  border-inline-start-color: var(--oj-info);
+  background: var(--oj-info-soft);
+}
+.oj-callout-note {
+  border-inline-start-color: var(--oj-accent-text);
+}
+.oj-callout-warning {
+  border-inline-start-color: var(--oj-warning);
+  background: var(--oj-warning-soft);
+}
+.oj-site-header {
+  border-block-end: 1px solid var(--oj-border);
+  background: var(--oj-bg);
+}
+.oj-site-header.oj-container,
+.oj-site-header .oj-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--oj-space-3);
+  min-block-size: 4rem;
+  padding-block: var(--oj-space-3);
+}
+.oj-site-footer {
+  margin-block-start: var(--oj-space-10);
+  padding-block: var(--oj-space-6);
+  border-block-start: 1px solid var(--oj-border);
+  color: var(--oj-text-muted);
+  font-size: var(--oj-text-sm);
+}
+.oj-site-footer .oj-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--oj-space-4);
+}

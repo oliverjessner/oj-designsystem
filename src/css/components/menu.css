@@ -1,0 +1,90 @@
+.oj-dropdown {
+  position: relative;
+  display: inline-block;
+}
+.oj-menu {
+  box-sizing: border-box;
+  min-inline-size: 12rem;
+  max-inline-size: min(22rem, calc(100vw - var(--oj-space-8)));
+  max-block-size: min(24rem, calc(100dvh - var(--oj-space-8)));
+  margin: 0;
+  padding: var(--oj-space-1);
+  overflow: auto;
+  border: 1px solid var(--oj-border-strong);
+  border-radius: var(--oj-radius-md);
+  background: var(--oj-surface);
+  color: var(--oj-text);
+  font-family: var(--oj-font-sans);
+  box-shadow: var(--oj-shadow-md);
+  z-index: var(--oj-z-dropdown);
+}
+.oj-dropdown > .oj-menu {
+  position: absolute;
+  inset-block-start: calc(100% + var(--oj-space-2));
+  inset-inline-end: 0;
+}
+.oj-menu-item {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: var(--oj-space-2);
+  inline-size: 100%;
+  min-block-size: var(--oj-control-height);
+  padding: var(--oj-space-2) var(--oj-space-3);
+  border: 0;
+  border-radius: var(--oj-radius-sm);
+  background: transparent;
+  color: var(--oj-text-soft);
+  font-family: var(--oj-font-sans);
+  font-size: var(--oj-text-sm);
+  font-weight: var(--oj-weight-medium);
+  line-height: var(--oj-leading-tight);
+  text-align: start;
+  text-decoration: none;
+  cursor: pointer;
+}
+.oj-menu-item:hover,
+.oj-menu-item:focus-visible {
+  background: var(--oj-surface-hover);
+  color: var(--oj-text);
+}
+.oj-menu-item:focus-visible {
+  outline-offset: -2px;
+}
+.oj-menu-item-danger {
+  color: var(--oj-danger);
+}
+.oj-menu-item-danger:hover {
+  color: var(--oj-danger);
+  background: var(--oj-danger-soft);
+}
+.oj-menu-item:disabled,
+.oj-menu-item[aria-disabled='true'] {
+  color: var(--oj-text-disabled);
+  background: transparent;
+  cursor: not-allowed;
+}
+.oj-menu-divider {
+  margin: var(--oj-space-1) 0;
+  border: 0;
+  border-block-start: 1px solid var(--oj-border);
+}
+.oj-tooltip {
+  box-sizing: border-box;
+  position: fixed;
+  max-inline-size: min(32ch, calc(100vw - var(--oj-space-8)));
+  margin: 0;
+  padding: var(--oj-space-2) var(--oj-space-3);
+  border: 1px solid var(--oj-border-strong);
+  border-radius: var(--oj-radius-sm);
+  background: var(--oj-surface-active);
+  color: var(--oj-text);
+  font-family: var(--oj-font-sans);
+  font-size: var(--oj-text-xs);
+  font-weight: var(--oj-weight-medium);
+  line-height: var(--oj-leading-normal);
+  overflow-wrap: anywhere;
+  pointer-events: auto;
+  box-shadow: var(--oj-shadow-sm);
+  z-index: var(--oj-z-tooltip);
+}

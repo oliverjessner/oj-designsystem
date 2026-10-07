@@ -1,0 +1,7 @@
+import { story } from './helpers.js';
+
+export default { title: 'Foundations/Layout' };
+export const Primitives = story(
+  `<div class="oj-container oj-stack"><section class="oj-section"><header class="oj-section-header"><div><p class="oj-kicker">Layout primitives</p><h1 class="oj-heading-3">Compose a workspace</h1></div><button class="oj-button oj-button-secondary">Section action</button></header><div class="oj-toolbar"><span>Toolbar content</span><div class="oj-cluster"><span class="oj-badge">Wrapping</span><button class="oj-button oj-button-ghost">Details</button></div></div></section><div class="oj-grid"><section class="oj-panel oj-stack"><h2 class="oj-heading-4">Stack</h2><p>First item</p><p>Second item</p><p>Third item</p></section><section class="oj-panel"><h2 class="oj-heading-4">Inline</h2><div class="oj-inline"><span>Format</span><code class="oj-mono">WebP</code><span class="oj-badge">Ready</span></div></section></div><div class="oj-split"><section class="oj-panel"><h2 class="oj-heading-4">Primary region</h2><p class="oj-muted">Grid and split layouts adapt without defining a complete app shell.</p></section><aside class="oj-panel"><h2 class="oj-heading-4">Supporting region</h2><p class="oj-muted">Consumer CSS decides the domain-specific composition.</p></aside></div></div>`,
+  'A small collection of stack, inline, cluster, grid, split, toolbar, section, section-header and container primitives.',
+);

@@ -1,0 +1,77 @@
+{
+  "name": "oj-designsystem",
+  "version": "0.1.0",
+  "description": "Calm, compact, framework-independent UI foundations for tools and editorial websites.",
+  "type": "module",
+  "license": "MIT",
+  "author": "Oliver Jessner",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/oliverjessner/oj-designsystem.git"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./styles.css": "./dist/styles.css",
+    "./tokens.css": "./dist/tokens.css",
+    "./fonts.css": "./dist/fonts.css",
+    "./fontawesome.css": "./dist/fontawesome.css",
+    "./assets/*": "./dist/assets/*",
+    "./package.json": "./package.json"
+  },
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "files": [
+    "dist",
+    "docs",
+    "README.md",
+    "LICENSE",
+    "THIRD-PARTY-NOTICES.md",
+    "CHANGELOG.md"
+  ],
+  "scripts": {
+    "dev": "npm run storybook",
+    "build": "node scripts/build.mjs",
+    "test": "vitest run",
+    "test:browser": "playwright test",
+    "lint": "eslint . && node scripts/check-css.mjs",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "storybook": "storybook dev -p 6006 --no-open",
+    "build-storybook": "storybook build",
+    "verify:package": "node scripts/verify-package.mjs",
+    "verify:consumer": "node scripts/verify-consumer.mjs",
+    "prepack": "npm run build",
+    "prestorybook": "npm run build",
+    "prebuild-storybook": "npm run build"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "7.3.1"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.13.0",
+    "@eslint/js": "10.0.1",
+    "@fontsource-variable/comfortaa": "5.3.0",
+    "@fontsource-variable/jetbrains-mono": "5.3.0",
+    "@playwright/test": "1.63.0",
+    "@storybook/addon-a11y": "10.6.1",
+    "@storybook/html-vite": "10.6.1",
+    "esbuild": "0.28.2",
+    "eslint": "10.12.0",
+    "globals": "^17.0.0",
+    "jsdom": "30.1.2",
+    "prettier": "3.9.9",
+    "storybook": "10.6.1",
+    "vite": "8.3.3",
+    "vitest": "5.0.3"
+  }
+}

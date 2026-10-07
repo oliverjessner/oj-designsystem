@@ -1,0 +1,66 @@
+.oj-heading,
+.oj-heading-1,
+.oj-heading-2,
+.oj-heading-3,
+.oj-heading-4 {
+  margin: 0;
+  color: var(--oj-text);
+  font-family: var(--oj-font-sans);
+  font-weight: var(--oj-weight-bold);
+  line-height: var(--oj-leading-tight);
+  text-wrap: balance;
+}
+
+.oj-heading,
+.oj-heading-2 {
+  font-size: var(--oj-text-xl);
+}
+.oj-heading-1 {
+  font-size: var(--oj-text-3xl);
+}
+.oj-heading-3 {
+  font-size: var(--oj-text-lg);
+}
+.oj-heading-4 {
+  font-size: var(--oj-text-md);
+}
+.oj-text {
+  margin: 0;
+  font-size: var(--oj-text-md);
+}
+.oj-small {
+  font-size: var(--oj-text-sm);
+  line-height: var(--oj-leading-normal);
+}
+.oj-muted {
+  color: var(--oj-text-muted);
+}
+.oj-soft {
+  color: var(--oj-text-soft);
+}
+.oj-kicker {
+  color: var(--oj-text-muted);
+  font-size: var(--oj-text-xs);
+  font-weight: var(--oj-weight-semibold);
+  line-height: var(--oj-leading-normal);
+  letter-spacing: 0.055em;
+  text-transform: uppercase;
+}
+.oj-caption {
+  color: var(--oj-text-muted);
+  font-size: var(--oj-text-xs);
+  line-height: var(--oj-leading-normal);
+}
+.oj-link {
+  color: var(--oj-accent-text);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+.oj-link:hover {
+  color: var(--oj-text);
+}
+.oj-divider {
+  margin-block: var(--oj-space-4);
+  border: 0;
+  border-block-start: 1px solid var(--oj-border);
+}

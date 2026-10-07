@@ -1,0 +1,259 @@
+<div class="oj-site oj-example-site">
+  <a class="oj-skip-link" href="#journal-main">Skip to article</a>
+  <header class="oj-site-header">
+    <div class="oj-container">
+      <a class="oj-link" href="#journal-main"><strong>Field notes</strong></a>
+      <nav class="oj-nav" aria-label="Main navigation">
+        <a class="oj-nav-link" href="#journal-main" aria-current="page"
+          >Journal</a
+        ><a class="oj-nav-link" href="#journal-projects">Projects</a
+        ><a class="oj-nav-link" href="#journal-contact">Contact</a>
+      </nav>
+      <a class="oj-icon-button" href="#journal-search" aria-label="Search notes"
+        ><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i
+      ></a>
+    </div>
+  </header>
+  <main class="oj-container oj-stack" id="journal-main" tabindex="-1">
+    <nav class="oj-breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li><a class="oj-link" href="#journal-main">Journal</a></li>
+        <li><span aria-current="page">Engineering notes</span></li>
+      </ol>
+    </nav>
+    <div class="oj-example-site-columns">
+      <article class="oj-prose">
+        <p class="oj-kicker">Engineering notes</p>
+        <h1>A quiet interface for a busy workspace</h1>
+        <p class="oj-byline">
+          By Example Author ·
+          <time datetime="2026-10-07">7 October 2026</time> · 5 min read
+        </p>
+        <div class="oj-cluster">
+          <a class="oj-tag" href="#journal-projects">Tools</a
+          ><a class="oj-tag" href="#journal-related">Design</a>
+        </div>
+        <p>
+          Useful tools earn their place through clarity. When a workspace
+          contains tables, paths and settings, each control should feel familiar
+          enough that people can concentrate on their files.
+        </p>
+        <h2>One visual family</h2>
+        <p>
+          Shared typography, spacing and semantic colors connect a desktop
+          utility to a technical journal. The reading layout can breathe while
+          its buttons and forms keep the same proportions.
+        </p>
+        <blockquote>
+          <p>Consistency makes the next action easier to recognize.</p>
+        </blockquote>
+        <h2>Small foundations, useful components</h2>
+        <ul>
+          <li>Comfortaa supplies a distinct typographic identity.</li>
+          <li>JetBrains Mono makes technical data easier to scan.</li>
+          <li>Native elements preserve familiar keyboard behavior.</li>
+        </ul>
+        <pre class="oj-code-block"><code>import 'oj-designsystem/styles.css';
+import { initOJ } from 'oj-designsystem';
+
+const destroy = initOJ(document);</code></pre>
+        <aside class="oj-callout oj-callout-note">
+          <strong>Application responsibility</strong>
+          <p>
+            The component library supplies controls. Layout, content and
+            business rules belong to the consumer.
+          </p>
+        </aside>
+        <h3>Reading and interacting</h3>
+        <p>
+          Visible focus and meaningful labels matter as much in an article as in
+          a desktop app. The interface should preserve both when the accent
+          changes.
+        </p>
+        <figure>
+          <div class="oj-example-site-figure">
+            <i class="fa-solid fa-layer-group" aria-hidden="true"></i
+            ><span>Tokens → Components → Consumer</span>
+          </div>
+          <figcaption>
+            A shared foundation supports several contexts without prescribing
+            their page layout.
+          </figcaption>
+        </figure>
+        <h3>Review checklist</h3>
+        <table>
+          <caption>
+            A small release review
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">Area</th>
+              <th scope="col">Check</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Interaction</td>
+              <td>Keyboard, focus and Escape</td>
+            </tr>
+            <tr>
+              <td>Appearance</td>
+              <td>Accent and mobile viewport</td>
+            </tr>
+            <tr>
+              <td>Package</td>
+              <td>Local assets and stable imports</td>
+            </tr>
+          </tbody>
+        </table>
+        <h4>Keep the scope clear</h4>
+        <p>
+          Use component classes for controls and a small amount of consumer CSS
+          for composition. The same family can then support both a dense
+          inspector and a readable article.
+        </p>
+      </article>
+      <aside
+        class="oj-stack oj-example-site-sidebar"
+        aria-labelledby="journal-projects"
+      >
+        <h2 class="oj-heading-4" id="journal-projects">Useful tools</h2>
+        <article class="oj-card oj-project-card">
+          <div class="oj-card-body">
+            <p class="oj-kicker">Open-source utility</p>
+            <h3 class="oj-card-title">Image workspace</h3>
+            <p class="oj-muted">
+              A compact local batch workflow for image files.
+            </p>
+            <div class="oj-cluster">
+              <span class="oj-tag">Local-first</span
+              ><span class="oj-tag">macOS</span>
+            </div>
+            <div class="oj-card-actions">
+              <a class="oj-button oj-button-secondary" href="#journal-related"
+                >Explore tools
+                <i class="fa-solid fa-arrow-right" aria-hidden="true"></i
+              ></a>
+            </div>
+          </div>
+        </article>
+        <section class="oj-panel oj-stack">
+          <h2 class="oj-heading-4">About this journal</h2>
+          <p class="oj-muted">
+            Examples and notes about technology, interfaces and useful software.
+          </p>
+          <a class="oj-link" href="#journal-contact">Contact the editor</a>
+        </section>
+      </aside>
+    </div>
+    <section class="oj-section oj-stack" aria-labelledby="journal-related">
+      <header class="oj-section-header">
+        <h2 class="oj-heading-3" id="journal-related">More field notes</h2>
+        <div class="oj-field">
+          <label class="oj-label" for="journal-search">Search notes</label
+          ><input
+            class="oj-input"
+            type="search"
+            id="journal-search"
+            placeholder="Title or topic"
+          />
+        </div>
+      </header>
+      <div class="oj-grid" data-journal-cards>
+        <article class="oj-card oj-article-card" data-journal-card>
+          <div class="oj-card-body">
+            <p class="oj-kicker">Research</p>
+            <h3 class="oj-card-title">
+              <a class="oj-link" href="#journal-main"
+                >Make evidence easy to inspect</a
+              >
+            </h3>
+            <p class="oj-muted">
+              How precise metadata helps readers follow a claim.
+            </p>
+            <p class="oj-card-meta">
+              <time datetime="2026-10-06">6 October 2026</time
+              ><span>4 min read</span>
+            </p>
+          </div>
+        </article>
+        <article class="oj-card oj-article-card" data-journal-card>
+          <div class="oj-card-body">
+            <p class="oj-kicker">Engineering</p>
+            <h3 class="oj-card-title">
+              <a class="oj-link" href="#journal-main"
+                >Native controls, predictable behavior</a
+              >
+            </h3>
+            <p class="oj-muted">
+              A small component API for accessible workflows.
+            </p>
+            <p class="oj-card-meta">
+              <time datetime="2026-10-05">5 October 2026</time
+              ><span>6 min read</span>
+            </p>
+          </div>
+        </article>
+      </div>
+      <p class="oj-helper" role="status" data-search-status>2 notes</p>
+    </section>
+    <section
+      class="oj-panel oj-stack oj-example-contact"
+      aria-labelledby="journal-contact"
+    >
+      <h2 class="oj-heading-3" id="journal-contact">Send a note</h2>
+      <p class="oj-muted">
+        This demo validates the form locally. No message is sent.
+      </p>
+      <form class="oj-stack" data-contact-form>
+        <div class="oj-field">
+          <label class="oj-label" for="journal-name">Name</label
+          ><input
+            class="oj-input"
+            id="journal-name"
+            name="name"
+            autocomplete="name"
+            required
+          />
+        </div>
+        <div class="oj-field">
+          <label class="oj-label" for="journal-email">Email</label
+          ><input
+            class="oj-input"
+            id="journal-email"
+            name="email"
+            type="email"
+            autocomplete="email"
+            required
+          />
+        </div>
+        <div class="oj-field">
+          <label class="oj-label" for="journal-message">Message</label
+          ><textarea
+            class="oj-textarea"
+            id="journal-message"
+            name="message"
+            rows="4"
+            required
+          ></textarea>
+        </div>
+        <div>
+          <button class="oj-button oj-button-primary" type="submit">
+            Preview message
+            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+          </button>
+        </div>
+      </form>
+    </section>
+  </main>
+  <footer class="oj-site-footer oj-container">
+    <div class="oj-toolbar">
+      <p class="oj-muted">© 2026 Field notes · Example content</p>
+      <nav class="oj-cluster" aria-label="Footer navigation">
+        <a class="oj-link" href="#journal-main">Journal</a
+        ><a class="oj-link" href="#journal-projects">Projects</a
+        ><a class="oj-link" href="#journal-contact">Contact</a>
+      </nav>
+    </div>
+  </footer>
+</div>

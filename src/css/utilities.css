@@ -1,0 +1,97 @@
+.oj-sr-only {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+.oj-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-inline-size: 0;
+}
+.oj-mono {
+  font-family: var(--oj-font-mono);
+  font-variant-numeric: tabular-nums;
+}
+.oj-numeric {
+  text-align: end;
+  font-family: var(--oj-font-mono);
+  font-variant-numeric: tabular-nums;
+}
+.oj-grow {
+  flex: 1;
+  min-inline-size: 0;
+}
+.oj-skip-link {
+  position: fixed;
+  inset-block-start: var(--oj-space-3);
+  inset-inline-start: var(--oj-space-3);
+  padding: var(--oj-space-2) var(--oj-space-3);
+  border: 1px solid var(--oj-border-control);
+  border-radius: var(--oj-radius-md);
+  background: var(--oj-surface);
+  color: var(--oj-text);
+  font-size: var(--oj-text-sm);
+  transform: translateY(calc(-100% - var(--oj-space-6)));
+  z-index: var(--oj-z-toast);
+}
+.oj-skip-link:focus {
+  transform: translateY(0);
+}
+
+/* Keep this module last: native hidden always wins against layout displays. */
+.oj-hidden,
+[hidden][class*='oj-'],
+.oj-root [hidden],
+.oj-app [hidden],
+.oj-site [hidden],
+[hidden]:is(
+  .oj-root,
+  .oj-app,
+  .oj-site,
+  .oj-panel,
+  .oj-stack,
+  .oj-inline,
+  .oj-cluster,
+  .oj-grid,
+  .oj-split,
+  .oj-toolbar,
+  .oj-tabs,
+  .oj-tab-list,
+  .oj-tab,
+  .oj-button,
+  .oj-icon-button,
+  .oj-menu,
+  .oj-dialog,
+  .oj-tooltip,
+  .oj-toast,
+  .oj-toast-region,
+  .oj-card,
+  .oj-empty-state,
+  .oj-dropzone,
+  .oj-progress,
+  .oj-spinner,
+  .oj-skeleton
+) {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :is(.oj-root, .oj-app, .oj-site)[class],
+  :is(.oj-root, .oj-app, .oj-site) [class],
+  :is(.oj-root, .oj-app, .oj-site) [class]::before,
+  :is(.oj-root, .oj-app, .oj-site) [class]::after,
+  :is([class^='oj-'], [class*=' oj-'])[class],
+  :is([class^='oj-'], [class*=' oj-'])[class]::before,
+  :is([class^='oj-'], [class*=' oj-'])[class]::after {
+    animation: none;
+    transition: none;
+    scroll-behavior: auto;
+  }
+}

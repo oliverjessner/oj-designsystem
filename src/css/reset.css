@@ -1,0 +1,20 @@
+/* Opt-in reset: importing the library does not restyle unrelated pages. */
+:where(.oj-root, .oj-app, .oj-site),
+:where(.oj-root, .oj-app, .oj-site) *,
+:where(.oj-root, .oj-app, .oj-site) *::before,
+:where(.oj-root, .oj-app, .oj-site) *::after {
+  box-sizing: border-box;
+}
+
+:where(.oj-root, .oj-app, .oj-site) :where(button, input, select, textarea) {
+  font: inherit;
+}
+
+:where(.oj-root, .oj-app, .oj-site) :where(img, svg, video) {
+  max-inline-size: 100%;
+  vertical-align: middle;
+}
+
+:where(.oj-root, .oj-app, .oj-site) :where(h1, h2, h3, h4, p, figure) {
+  margin: 0;
+}

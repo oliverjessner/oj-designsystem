@@ -1,0 +1,52 @@
+.oj-root,
+.oj-app,
+.oj-site {
+  color-scheme: dark;
+  color: var(--oj-text);
+  background: var(--oj-bg);
+  font-family: var(--oj-font-sans);
+  font-size: var(--oj-text-md);
+  font-weight: var(--oj-weight-normal);
+  line-height: var(--oj-leading-normal);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.oj-app,
+.oj-site {
+  min-block-size: 100dvh;
+}
+
+:where(body.oj-root, body.oj-app, body.oj-site) {
+  margin: 0;
+}
+
+:where(.oj-root, .oj-app, .oj-site) ::selection {
+  color: var(--oj-text);
+  background: var(--oj-accent-soft);
+}
+
+:where(.oj-root, .oj-app, .oj-site) :focus-visible,
+:where([class^='oj-'], [class*=' oj-']):focus-visible {
+  outline: var(--oj-focus-width) solid var(--oj-focus-color);
+  outline-offset: var(--oj-focus-offset);
+}
+
+.oj-scroll-area {
+  overflow: auto;
+  min-inline-size: 0;
+  min-block-size: 0;
+  scrollbar-width: thin;
+  scrollbar-color: var(--oj-border-strong) transparent;
+  scrollbar-gutter: stable;
+}
+
+.oj-scroll-area::-webkit-scrollbar {
+  inline-size: var(--oj-space-2);
+  block-size: var(--oj-space-2);
+}
+
+.oj-scroll-area::-webkit-scrollbar-thumb {
+  border-radius: var(--oj-radius-sm);
+  background: var(--oj-border-strong);
+}

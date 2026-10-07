@@ -1,0 +1,287 @@
+<div class="oj-app oj-example-tool oj-container oj-stack">
+  <a class="oj-skip-link" href="#tool-main">Skip to workspace</a>
+  <header class="oj-toolbar oj-example-tool-header">
+    <div class="oj-inline">
+      <i class="fa-solid fa-layer-group" aria-hidden="true"></i
+      ><strong>Image workspace</strong><span class="oj-badge">Demo data</span>
+    </div>
+    <div class="oj-inline">
+      <span class="oj-status oj-status-success"
+        ><span class="oj-status-dot" aria-hidden="true"></span
+        ><span data-tool-status>Ready</span></span
+      ><button
+        class="oj-icon-button"
+        aria-label="Export settings"
+        data-oj-tooltip="Export settings"
+        data-oj-dialog-open="tool-settings"
+      >
+        <i class="fa-solid fa-gear" aria-hidden="true"></i>
+      </button>
+    </div>
+  </header>
+  <main class="oj-tabs" data-oj-tabs id="tool-main" tabindex="-1">
+    <div class="oj-tab-list" role="tablist" aria-label="Workspace views">
+      <button
+        class="oj-tab"
+        role="tab"
+        aria-selected="true"
+        aria-controls="tool-workspace"
+      >
+        Workspace
+      </button>
+      <button
+        class="oj-tab"
+        role="tab"
+        aria-selected="false"
+        aria-controls="tool-history"
+      >
+        History
+      </button>
+      <button
+        class="oj-tab"
+        role="tab"
+        aria-selected="false"
+        aria-controls="tool-about"
+      >
+        About
+      </button>
+    </div>
+    <section
+      class="oj-tab-panel oj-stack"
+      role="tabpanel"
+      id="tool-workspace"
+      tabindex="0"
+    >
+      <div class="oj-toolbar">
+        <div class="oj-cluster">
+          <button class="oj-button oj-button-primary" data-choose-files>
+            <i class="fa-solid fa-folder-open" aria-hidden="true"></i> Add files</button
+          ><input
+            type="file"
+            data-file-input
+            multiple
+            accept="image/*"
+            aria-label="Choose image files"
+            hidden
+          /><span class="oj-muted" data-file-count>3 files</span>
+        </div>
+        <div class="oj-cluster">
+          <div class="oj-field">
+            <label class="oj-label" for="tool-search">Search files</label
+            ><input
+              class="oj-input"
+              id="tool-search"
+              type="search"
+              placeholder="Search files"
+            />
+          </div>
+          <div class="oj-dropdown" data-oj-dropdown>
+            <button
+              class="oj-button oj-button-secondary"
+              data-oj-dropdown-trigger
+            >
+              Actions
+              <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+            </button>
+            <div class="oj-menu" data-oj-dropdown-menu role="menu" hidden>
+              <button
+                class="oj-menu-item"
+                role="menuitem"
+                data-oj-value="reset"
+              >
+                Reset demo files</button
+              ><button
+                class="oj-menu-item oj-menu-item-danger"
+                role="menuitem"
+                data-oj-value="remove"
+              >
+                Remove selected file
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="oj-example-tool-columns">
+        <section class="oj-panel oj-stack" aria-labelledby="queue-title">
+          <header class="oj-section-header">
+            <div>
+              <p class="oj-kicker">Current batch</p>
+              <h1 class="oj-heading-3" id="queue-title">Export queue</h1>
+            </div>
+            <span class="oj-badge oj-badge-accent">Local preview</span>
+          </header>
+          <div
+            class="oj-table-container"
+            role="region"
+            aria-label="File queue"
+            tabindex="0"
+          >
+            <table class="oj-table oj-table-compact oj-table-hover">
+              <caption class="oj-sr-only">
+                Choose a file to inspect its details
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col" aria-sort="ascending">
+                    <button class="oj-table-sort" data-sort-name>
+                      File
+                      <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+                    </button>
+                  </th>
+                  <th scope="col">Type</th>
+                  <th scope="col" class="oj-numeric">Size</th>
+                  <th scope="col">Status</th>
+                </tr>
+              </thead>
+              <tbody data-file-rows></tbody>
+            </table>
+          </div>
+          <div class="oj-empty-state" data-files-empty hidden>
+            <h2 class="oj-empty-state-title">No matching files</h2>
+            <p class="oj-empty-state-description">
+              Clear your search or add files to the queue.
+            </p>
+          </div>
+          <p class="oj-helper">
+            This example previews an export workflow. Files are not converted or
+            uploaded.
+          </p>
+        </section>
+        <aside class="oj-panel oj-stack" aria-labelledby="inspector-title">
+          <header class="oj-section-header">
+            <h2 class="oj-heading-3" id="inspector-title">Inspector</h2>
+            <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+          </header>
+          <dl class="oj-key-value">
+            <div>
+              <dt>Name</dt>
+              <dd class="oj-mono" data-inspector-name>article-header.jpg</dd>
+            </div>
+            <div>
+              <dt>Source size</dt>
+              <dd class="oj-mono" data-inspector-size>824 KB</dd>
+            </div>
+            <div>
+              <dt>Destination</dt>
+              <dd class="oj-mono">WebP</dd>
+            </div>
+          </dl>
+          <div class="oj-field">
+            <label class="oj-label" for="tool-format">Export format</label
+            ><select class="oj-select" id="tool-format">
+              <option>WebP</option>
+              <option>JPEG</option>
+              <option>PNG</option>
+              <option>AVIF</option>
+            </select>
+          </div>
+          <div class="oj-field">
+            <label class="oj-label" for="tool-quality"
+              >Quality
+              <output for="tool-quality" data-quality-output>80%</output></label
+            ><input
+              class="oj-range"
+              type="range"
+              id="tool-quality"
+              min="1"
+              max="100"
+              value="80"
+            />
+          </div>
+          <label class="oj-switch"
+            ><input type="checkbox" role="switch" checked /><span
+              class="oj-switch-track"
+              aria-hidden="true"
+            ></span
+            ><span>Preserve metadata</span></label
+          >
+          <div class="oj-field">
+            <label class="oj-label" for="tool-output">Output folder</label
+            ><input
+              class="oj-input oj-mono"
+              id="tool-output"
+              value="/Users/example/exports"
+              readonly
+            />
+          </div>
+          <button class="oj-button oj-button-primary" data-preview-export>
+            <i class="fa-solid fa-download" aria-hidden="true"></i> Preview
+            export
+          </button>
+        </aside>
+      </div>
+      <section
+        class="oj-panel oj-panel-compact oj-toolbar"
+        aria-label="Batch summary"
+      >
+        <div class="oj-metric">
+          <span class="oj-metric-label">Queued files</span
+          ><strong class="oj-metric-value oj-mono" data-summary-count>3</strong>
+        </div>
+        <div class="oj-metric">
+          <span class="oj-metric-label">Source storage</span
+          ><strong class="oj-metric-value oj-mono" data-summary-size
+            >2.2 MB</strong
+          >
+        </div>
+        <div>
+          <p class="oj-label">Destination</p>
+          <span class="oj-path">/Users/example/exports</span>
+        </div>
+      </section>
+    </section>
+    <section class="oj-tab-panel oj-panel" role="tabpanel" id="tool-history">
+      <div class="oj-empty-state">
+        <i
+          class="fa-solid fa-clock-rotate-left oj-empty-state-icon"
+          aria-hidden="true"
+        ></i>
+        <h2 class="oj-empty-state-title">No exports yet</h2>
+        <p class="oj-empty-state-description">
+          Previewing a batch does not create files or conversion history.
+        </p>
+      </div>
+    </section>
+    <section
+      class="oj-tab-panel oj-panel oj-prose"
+      role="tabpanel"
+      id="tool-about"
+    >
+      <h2>Built with oj-designsystem</h2>
+      <p>
+        The example imports the published package API, local fonts and bundled
+        Font Awesome. Its file queue and sorting are consumer logic.
+      </p>
+      <pre><code>import 'oj-designsystem/styles.css';
+import { initOJ, toast } from 'oj-designsystem';</code></pre>
+    </section>
+  </main>
+  <dialog
+    class="oj-dialog"
+    data-oj-dialog
+    id="tool-settings"
+    aria-labelledby="tool-settings-title"
+  >
+    <header class="oj-dialog-header">
+      <h2 class="oj-dialog-title" id="tool-settings-title">Export settings</h2>
+    </header>
+    <form method="dialog" class="oj-dialog-body oj-stack">
+      <div class="oj-field">
+        <label class="oj-label" for="tool-preset-name">Preset name</label
+        ><input
+          class="oj-input"
+          id="tool-preset-name"
+          value="Article images"
+          autofocus
+        />
+      </div>
+      <p class="oj-helper">
+        Settings are illustrative and remain in this page.
+      </p>
+      <footer class="oj-dialog-footer">
+        <button class="oj-button oj-button-ghost" value="cancel">Cancel</button
+        ><button class="oj-button oj-button-primary" value="save">Save</button>
+      </footer>
+    </form>
+  </dialog>
+</div>

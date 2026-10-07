@@ -1,0 +1,8 @@
+node_modules
+dist
+storybook-static
+package-lock.json
+examples/*/package-lock.json
+test-results
+playwright-report
+*.tgz

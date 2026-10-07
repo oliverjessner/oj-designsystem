@@ -1,0 +1,36 @@
+:root {
+  --oj-accent: #7d34c5;
+}
+.oj-example-site {
+  padding-bottom: var(--oj-space-5);
+}
+.oj-example-site-columns {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(16rem, 1fr);
+  gap: var(--oj-space-8);
+  align-items: start;
+}
+.oj-example-site-sidebar {
+  padding-top: var(--oj-space-6);
+}
+.oj-example-site-figure {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--oj-space-4);
+  padding: var(--oj-space-8);
+  background: var(--oj-surface);
+  border: 1px solid var(--oj-border);
+  border-radius: var(--oj-radius-md);
+}
+.oj-example-contact {
+  max-width: 40rem;
+}
+@media (max-width: 880px) {
+  .oj-example-site-columns {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .oj-example-site-sidebar {
+    padding-top: 0;
+  }
+}

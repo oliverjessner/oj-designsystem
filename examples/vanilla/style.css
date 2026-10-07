@@ -1,0 +1,21 @@
+:root {
+  --oj-accent: #22c55e;
+}
+.oj-example-tool {
+  padding-block: var(--oj-space-5);
+}
+.oj-example-tool-header {
+  padding-bottom: var(--oj-space-4);
+  border-bottom: 1px solid var(--oj-border);
+}
+.oj-example-tool-columns {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(16rem, 1fr);
+  gap: var(--oj-space-5);
+  align-items: start;
+}
+@media (max-width: 760px) {
+  .oj-example-tool-columns {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
