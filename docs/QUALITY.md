@@ -9,7 +9,7 @@ Verification date: 7 October 2026. Local environment: macOS, Node 26.10.0, locke
 | Dependency installation   | Successful; committed package lock                                                                                          |
 | `npm run lint`            | ESLint and CSS namespace/no-ID/no-important guards pass                                                                     |
 | `npm run format:check`    | All authored files pass                                                                                                     |
-| `npm test`                | 44 public API/behavior tests pass                                                                                           |
+| `npm test`                | 53 public API/behavior and release-flow tests pass                                                                          |
 | `npm run build`           | Minified ESM/CSS, local fonts, icons, types and original licenses generated                                                 |
 | `npm run build-storybook` | 75 stories across 59 groups build successfully                                                                              |
 | `npm run test:browser`    | 76 checks pass; two intentional inventory duplicates skipped                                                                |
@@ -19,6 +19,8 @@ Verification date: 7 October 2026. Local environment: macOS, Node 26.10.0, locke
 | Build reproducibility     | Two consecutive distribution builds have identical file paths and SHA-256 contents                                          |
 
 The browser suite runs 25 component/runtime checks in each of Playwright's Chromium 153.0.8010.12, Firefox 155.0 and WebKit 26.6 engines. The full Storybook inventory runs once in Chromium; its duplicates are explicitly skipped in the other two engines. This covers native modal focus/inertness/Escape/restoration, confirmation results, roving tabs, disabled choices, menu keyboard flow and viewport positioning, scoped Shadow DOM, hoverable modal tooltips, safe literal text, toast announcements/dismissal, initialization ownership and custom events.
+
+Release-flow tests verify that failed checks, failed consumers, stale package metadata and a modified artifact prevent publication. They also cover dry-run flags, inherited npm dry-run intent and prerelease tags. `npm run publish:npm -- --dry-run` repeats all release gates and npm's publication preview without publishing.
 
 ## Visual and accessibility evidence
 

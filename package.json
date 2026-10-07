@@ -50,9 +50,14 @@
     "build-storybook": "storybook build",
     "verify:package": "node scripts/verify-package.mjs",
     "verify:consumer": "node scripts/verify-consumer.mjs",
+    "publish:npm": "node scripts/publish.mjs",
     "prepack": "npm run build",
     "prestorybook": "npm run build",
     "prebuild-storybook": "npm run build"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "7.3.1"

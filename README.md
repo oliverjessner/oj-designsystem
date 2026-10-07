@@ -8,7 +8,7 @@ A calm, compact, CSS-first UI library for desktop tools, browser applications an
 npm install oj-designsystem
 ```
 
-Version 0.1.0 is prepared for npm distribution. Until a registry release is published, use `npm pack` and install the generated `.tgz`, or use a local `file:` dependency. This repository does not automatically publish releases.
+Version 0.1.0 is prepared for npm distribution. Until a registry release is published, use `npm pack` and install the generated `.tgz`, or use a local `file:` dependency. Releases are published explicitly with the command below.
 
 ## Quick start
 
@@ -128,6 +128,20 @@ Storybook includes Introduction, foundation/type/token/icon stories, component s
 [QUALITY](docs/QUALITY.md) records the release checks, browser versions, visual review, distribution measurements and verification limits.
 
 [examples/vanilla](examples/vanilla) and [examples/website](examples/website) use the public package imports and built output. Run `npm run build` in this repository first, then `npm install && npm run dev` in an example. The verification script goes further by installing the actual packed artifact outside this repository.
+
+## Publishing to npm
+
+Install development dependencies with `npm ci` and Playwright browsers with `npx playwright install` before your first release. Run these commands from the repository:
+
+```sh
+npm run publish:npm -- --dry-run # all checks and npm's publication preview
+npm login --registry=https://registry.npmjs.org/
+npm run publish:npm             # all checks, then public npm publication
+```
+
+The script runs lint, formatting, unit tests, the library and Storybook builds, and all browser checks. It packs once, checks exports/assets/licenses, installs that exact tarball in both external example consumers, checks its SHA-512 integrity and publishes the same artifact. A failed check stops the release. The final tarball publish skips lifecycle scripts so it cannot rebuild the checked package. `publish:npm` is a named script, not npm's `publish` lifecycle hook.
+
+Stable versions use `latest`; prerelease versions use `next`. Override the tag with `npm run publish:npm -- --tag beta`. npm handles authentication and any required 2FA challenge interactively. For subsequent versions, update `CHANGELOG.md`, run `npm version patch` (or `minor`/`major`) after committing your changes, and run the release command. Each published name/version must be unique. See the official [npm publish documentation](https://docs.npmjs.com/cli/v11/commands/npm-publish).
 
 ## Accessibility
 
