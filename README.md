@@ -8,8 +8,6 @@ A calm, compact, CSS-first UI library for desktop tools, browser applications an
 npm install oj-designsystem
 ```
 
-Version 0.1.0 is prepared for npm distribution. Until a registry release is published, use `npm pack` and install the generated `.tgz`, or use a local `file:` dependency. Releases are published explicitly with the command below.
-
 ## Quick start
 
 ```js
