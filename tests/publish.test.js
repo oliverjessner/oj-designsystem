@@ -42,7 +42,7 @@ afterEach(async () => {
 test('publishes the verified consumer artifact only after every quality gate', async () => {
   await publishPackage({}, dependencies);
   expect(
-    dependencies.run.mock.calls.slice(0, -1).map(([args]) => args),
+    dependencies.run.mock.calls.slice(1, -1).map(([args]) => args),
   ).toEqual([
     ['run', 'lint'],
     ['run', 'format:check'],
@@ -52,6 +52,11 @@ test('publishes the verified consumer artifact only after every quality gate', a
     ['run', 'test:browser'],
   ]);
   const tarball = path.join(root, artifact.filename);
+  expect(dependencies.run).toHaveBeenNthCalledWith(
+    1,
+    ['whoami', '--registry', 'https://registry.npmjs.org/'],
+    root,
+  );
   expect(dependencies.verifyPackage).toHaveBeenCalledTimes(1);
   expect(dependencies.verifyConsumer).toHaveBeenCalledExactlyOnceWith(tarball);
   expect(dependencies.run).toHaveBeenLastCalledWith(
@@ -76,9 +81,22 @@ test('publishes the verified consumer artifact only after every quality gate', a
 
 test('dry run still checks consumers and invokes only npm dry-run publication', async () => {
   await publishPackage({ dryRun: true, tag: 'beta' }, dependencies);
+  expect(
+    dependencies.run.mock.calls.some(([args]) => args[0] === 'whoami'),
+  ).toBe(false);
   expect(dependencies.verifyConsumer).toHaveBeenCalledTimes(1);
   expect(dependencies.run.mock.calls.at(-1)[0]).toContain('--dry-run=true');
   expect(dependencies.run.mock.calls.at(-1)[0]).toContain('beta');
+});
+
+test('a rejected login stops before quality gates and packing', async () => {
+  dependencies.run.mockImplementation((args) => {
+    if (args[0] === 'whoami') throw new Error('E401 Unauthorized');
+  });
+  await expect(publishPackage({}, dependencies)).rejects.toThrow('npm login');
+  expect(dependencies.run).toHaveBeenCalledTimes(1);
+  expect(dependencies.verifyPackage).not.toHaveBeenCalled();
+  expect(dependencies.verifyConsumer).not.toHaveBeenCalled();
 });
 
 test('a failed quality gate stops before packing or publishing', async () => {
@@ -149,4 +167,7 @@ test('npm-level dry-run intent is preserved without a script argument', async ()
   vi.stubEnv('npm_config_dry_run', 'true');
   await publishPackage({}, dependencies);
   expect(dependencies.run.mock.calls.at(-1)[0]).toContain('--dry-run=true');
+  expect(
+    dependencies.run.mock.calls.some(([args]) => args[0] === 'whoami'),
+  ).toBe(false);
 });

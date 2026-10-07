@@ -133,11 +133,14 @@ Install development dependencies with `npm ci` and Playwright browsers with `npx
 
 ```sh
 npm run publish:npm -- --dry-run # all checks and npm's publication preview
-npm login --registry=https://registry.npmjs.org/
+npm login --registry=https://registry.npmjs.org/ --auth-type=web
+npm whoami --registry=https://registry.npmjs.org/ # must show your npm username
 npm run publish:npm             # all checks, then public npm publication
 ```
 
-The script runs lint, formatting, unit tests, the library and Storybook builds, and all browser checks. It packs once, checks exports/assets/licenses, installs that exact tarball in both external example consumers, checks its SHA-512 integrity and publishes the same artifact. A failed check stops the release. The final tarball publish skips lifecycle scripts so it cannot rebuild the checked package. `publish:npm` is a named script, not npm's `publish` lifecycle hook.
+For a real local publish, the script first verifies your registry login with `npm whoami`. A dry run does not require authentication. It then runs lint, formatting, unit tests, the library and Storybook builds, and all browser checks. It packs once, checks exports/assets/licenses, installs that exact tarball in both external example consumers, checks its SHA-512 integrity and publishes the same artifact. A failed check stops the release. The final tarball publish skips lifecycle scripts so it cannot rebuild the checked package. `publish:npm` is a named script, not npm's `publish` lifecycle hook.
+
+If a publish returns `E404` and `npm whoami` returns `E401`, npm is rejecting the configured authentication. Log in again with the commands above. A `GET` 404 for the package before its first publication is expected; the initial publish creates it. Interactive publication requires account 2FA; a granular token must have suitable publishing permissions. Login checks identity, not token write permissions. See [npm authentication and 2FA](https://docs.npmjs.com/requiring-2fa-for-package-publishing-and-settings-modification/).
 
 Stable versions use `latest`; prerelease versions use `next`. Override the tag with `npm run publish:npm -- --tag beta`. npm handles authentication and any required 2FA challenge interactively. For subsequent versions, update `CHANGELOG.md`, run `npm version patch` (or `minor`/`major`) after committing your changes, and run the release command. Each published name/version must be unique. See the official [npm publish documentation](https://docs.npmjs.com/cli/v11/commands/npm-publish).
 

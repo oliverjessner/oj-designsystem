@@ -40,6 +40,18 @@ export async function publishPackage(options = {}, dependencies = {}) {
   const tag = options.tag ?? (pkg.version.includes('-') ? 'next' : 'latest');
   if (!tag || tag.startsWith('-')) throw new Error('Provide a valid npm tag.');
 
+  if (!dryRun) {
+    console.log('\nChecking npm authentication...');
+    try {
+      run(['whoami', '--registry', 'https://registry.npmjs.org/'], root);
+    } catch (error) {
+      throw new Error(
+        'Could not verify npm authentication. Run npm login --registry=https://registry.npmjs.org/ --auth-type=web, then npm whoami --registry=https://registry.npmjs.org/ before retrying.',
+        { cause: error },
+      );
+    }
+  }
+
   for (const script of [
     'lint',
     'format:check',
