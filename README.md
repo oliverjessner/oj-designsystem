@@ -127,23 +127,6 @@ Storybook includes Introduction, foundation/type/token/icon stories, component s
 
 [examples/vanilla](examples/vanilla) and [examples/website](examples/website) use the public package imports and built output. Run `npm run build` in this repository first, then `npm install && npm run dev` in an example. The verification script goes further by installing the actual packed artifact outside this repository.
 
-## Publishing to npm
-
-Install development dependencies with `npm ci` and Playwright browsers with `npx playwright install` before your first release. Run these commands from the repository:
-
-```sh
-npm run publish:npm -- --dry-run # all checks and npm's publication preview
-npm login --registry=https://registry.npmjs.org/ --auth-type=web
-npm whoami --registry=https://registry.npmjs.org/ # must show your npm username
-npm run publish:npm             # all checks, then public npm publication
-```
-
-For a real local publish, the script first verifies your registry login with `npm whoami`. A dry run does not require authentication. It then runs lint, formatting, unit tests, the library and Storybook builds, and all browser checks. It packs once, checks exports/assets/licenses, installs that exact tarball in both external example consumers, checks its SHA-512 integrity and publishes the same artifact. A failed check stops the release. The final tarball publish skips lifecycle scripts so it cannot rebuild the checked package. `publish:npm` is a named script, not npm's `publish` lifecycle hook.
-
-If a publish returns `E404` and `npm whoami` returns `E401`, npm is rejecting the configured authentication. Log in again with the commands above. A `GET` 404 for the package before its first publication is expected; the initial publish creates it. Interactive publication requires account 2FA; a granular token must have suitable publishing permissions. Login checks identity, not token write permissions. See [npm authentication and 2FA](https://docs.npmjs.com/requiring-2fa-for-package-publishing-and-settings-modification/).
-
-Stable versions use `latest`; prerelease versions use `next`. Override the tag with `npm run publish:npm -- --tag beta`. npm handles authentication and any required 2FA challenge interactively. For subsequent versions, update `CHANGELOG.md`, run `npm version patch` (or `minor`/`major`) after committing your changes, and run the release command. Each published name/version must be unique. See the official [npm publish documentation](https://docs.npmjs.com/cli/v11/commands/npm-publish).
-
 ## Accessibility
 
 Native semantic elements, visible `:focus-visible`, labels/error associations, keyboard patterns, live regions and reduced motion aim at WCAG 2.2 AA. Public behavior and real-browser accessibility/contrast checks cover representative components and five accents. These checks do not certify consumer pages; consumers remain responsible for content, labels, meaningful status text, appropriate interaction semantics and their custom theme contrast. Use text with status dots; never encode status only through color. Compact controls expand for coarse pointers.
