@@ -80,6 +80,7 @@ import {
   initDropdowns,
   initTooltips,
   initDialogs,
+  initCountUps,
   openDialog,
   closeDialog,
   confirmDialog,
@@ -102,7 +103,9 @@ Explicit scoped initialization is idempotent and returns cleanup. Tabs provide r
 <footer class="oj-site-footer">…</footer>
 ```
 
-Prose is opt-in and uses a readable 68ch measure. The consumer chooses page structure, branding, routes and navigation content. [JEKYLL](docs/JEKYLL.md) explains static asset copying with no Node runtime. Tauri/Electron need only their normal local bundler/assets, with no native-library assumptions in this package.
+Prose is opt-in and uses a readable 68ch measure. Big Numbers sections use `oj-big-number-section`, `oj-big-number-list` and native term/value pairs for prominent website statistics. Optional `data-oj-count-up` values animate once when visible through `initOJ` or `initCountUps`; final HTML remains readable without JavaScript and with reduced motion. See the complete [markup example](docs/COMPONENTS.md#big-numbers-website-section) and [animation API](docs/JS-API.md#count-up-animation).
+
+The consumer chooses page structure, branding, routes and navigation content. [JEKYLL](docs/JEKYLL.md) explains static asset copying with no Node runtime. Tauri/Electron need only their normal local bundler/assets, with no native-library assumptions in this package.
 
 ## Storybook and development
 

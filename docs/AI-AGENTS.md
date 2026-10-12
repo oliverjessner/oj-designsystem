@@ -138,6 +138,7 @@ Need a panel?      → oj-panel
 Need tabs?         → oj-tabs
 Need status?       → oj-status
 Need a table?      → oj-table
+Need big numbers? → oj-big-number-section + oj-big-number-list
 Need a dialog?     → oj-dialog
 Need an icon?      → Font Awesome
 Need a color?      → use an oj token

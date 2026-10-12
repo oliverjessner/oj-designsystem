@@ -9,6 +9,7 @@ import {
   initDropdowns,
   initTooltips,
   initDialogs,
+  initCountUps,
   openDialog,
   closeDialog,
   confirmDialog,
@@ -73,6 +74,38 @@ const confirmed = await confirmDialog({
 ```
 
 The browser handles modal focus/inertness/Escape. Helpers preserve an opener and restore focus if it remains connected; autofocus is honored. `confirmDialog` inserts safe text, focuses Cancel, resolves false for cancellation/Escape, and removes temporary markup/listeners. `oj:open`/`oj:close` bubble from dialog: `{ dialog, returnValue }`. Do not nest native dialogs in other dialogs or provide an inert root.
+
+## Count-up animation
+
+`initCountUps(root?)` discovers text-only elements with `data-oj-count-up`, including the root itself. `initOJ(root?)` includes this initializer. It also works with a shadow-root scope. Initialization is explicit and importing the module never accesses browser globals.
+
+```html
+<span
+  data-oj-count-up="1000"
+  data-oj-count-locale="de-DE"
+  data-oj-count-suffix="h"
+  >1.000h</span
+>
+```
+
+Always render the complete final value in the HTML. The target attribute contains an ungrouped decimal number with a period as decimal separator, such as `1000`, `99.9` or `-12.5`. It is separate from localized display text. The final text is restored exactly after animation. Use matching HTML and formatting attributes to keep the number width stable.
+
+| Attribute                | Meaning / default                                                                                                                                |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `data-oj-count-up`       | Required finite numeric target; absolute value must not exceed `Number.MAX_SAFE_INTEGER`. Zero and negative values are supported.                |
+| `data-oj-count-locale`   | `Intl.NumberFormat` locale; defaults to the closest `lang`, then document language, then browser locale.                                         |
+| `data-oj-count-decimals` | Integer from 0 to 20; defaults to the target's fractional precision, capped at 20.                                                               |
+| `data-oj-count-prefix`   | Literal text before the animated number, such as `€`; default empty.                                                                             |
+| `data-oj-count-suffix`   | Literal text after the animated number, such as `h` or `%`; default empty.                                                                       |
+| `data-oj-count-duration` | Positive finite duration in milliseconds; default 1800. Invalid values use the default.                                                          |
+| `data-oj-count-delay`    | Nonnegative finite delay in milliseconds after visibility; default 0. Use 0/90/180 for a staggered row.                                          |
+| `data-oj-count-state`    | Runtime-owned `pending`, `running` or `complete`; original attribute restored on cleanup. No runtime state is added when enhancement is skipped. |
+
+The number animates from zero with cubic ease-out once at least 65% of it is visible. It does not restart after scrolling away/back or a repeated initialization. Cleanup releases that call's observers, animation frames and media listeners, restores original text nodes/classes/state and permits a fresh animation. New nodes are discovered by a later initializer call; DOM mutations are not observed automatically.
+
+Without JavaScript, `IntersectionObserver` or animation-frame support, or when reduced motion is already requested, the authored final text stays visible. If reduced motion is enabled while waiting/animating, the animation stops immediately at the final value and does not restart if the preference changes back. Detached running elements also finish without scheduling further frames.
+
+During animation the final value remains available as screen-reader text. The animated text and invisible width reserve are `aria-hidden`; intermediate counts create no live announcements or tab stops. Generated helper classes are `oj-count-up`, `oj-count-up-current` and `oj-count-up-reserve`. User strings use `textContent`. Invalid targets, precision or locales and elements with child markup retain their authored content. There are no custom events or replay controls in the library; dispose/reinitialize the owned scope for an explicit replay, as shown in Storybook.
 
 ## Toast
 

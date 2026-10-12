@@ -1,6 +1,6 @@
 # Component contracts
 
-`oj-designsystem` is CSS-first. Import `oj-designsystem/styles.css`, then use native HTML with the classes below. Import `initOJ` only for declarative tabs, dropdowns, tooltips and dialog triggers. Fonts and Font Awesome are local package assets.
+`oj-designsystem` is CSS-first. Import `oj-designsystem/styles.css`, then use native HTML with the classes below. Import `initOJ` for declarative tabs, dropdowns, tooltips, dialog triggers and optional count-up animations. Fonts and Font Awesome are local package assets.
 
 Every component is shown in Storybook. Change the Accent toolbar and viewport to inspect the same markup under green, purple, blue, orange and red at desktop, laptop, tablet and mobile widths. Native `:disabled`, `:focus-visible`, `:checked`, `readonly` and `aria-invalid` are preferred to custom state classes.
 
@@ -101,6 +101,7 @@ Inputs, selects and textareas optionally use `data-oj-kind="warning"` or `data-o
 | Table                 | `<table class="oj-table"><caption>Files</caption><thead><tr><th scope="col">File</th></tr></thead><tbody><tr><td>header.jpg</td></tr></tbody></table>`                                                   | `oj-table-compact`, `oj-table-hover`, `oj-table-sticky`; row `data-oj-state="selected"`; `.oj-numeric` | Use a real button/link/checkbox for row interaction. Styling a row does not make it a control. Native table rows do not receive unsupported `aria-selected`. |
 | Sort header           | `<th scope="col" aria-sort="ascending"><button class="oj-table-sort" type="button">File <i class="fa-solid fa-arrow-up" aria-hidden="true"></i></button></th>`                                           | `aria-sort="ascending"` / `descending` on the current header                                           | Consumer owns sorting and keeps aria-sort in sync.                                                                                                           |
 | Simple list           | `<ul class="oj-list"><li class="oj-list-item">Keep originals</li></ul>`                                                                                                                                  | Static content                                                                                         | Preserve list structure.                                                                                                                                     |
+| Bullet list           | `<ul class="oj-bullet-list"><li>Keep originals</li><li>Review exports</li></ul>`                                                                                                                         | Visible bullets, wrapping text and nested lists                                                        | Native `ul`/`li` semantics. No JS required; use `oj-link` for destinations within items.                                                                     |
 | Interactive list      | `<ul class="oj-list oj-list-interactive"><li><button class="oj-list-item" type="button">Article images</button></li></ul>`                                                                               | Hover/focus/disabled                                                                                   | Use actual controls for actions. For `aria-disabled` links, the consumer suppresses activation.                                                              |
 | Key/value list        | `<dl class="oj-key-value"><div><dt>Format</dt><dd class="oj-mono">WebP</dd></div></dl>`                                                                                                                  | Responsive term/value alignment                                                                        | Native definition list expresses relationships.                                                                                                              |
 | Definition list       | `<dl class="oj-definition-list"><dt>Accent</dt><dd>A product color.</dd></dl>`                                                                                                                           | Responsive term/value columns                                                                          | Use terms and their definitions.                                                                                                                             |
@@ -109,6 +110,26 @@ Inputs, selects and textareas optionally use `data-oj-kind="warning"` or `data-o
 | Status                | `<span class="oj-status oj-status-success"><span class="oj-status-dot" aria-hidden="true"></span>Running</span>`                                                                                         | Success/warning/danger/info; neutral default                                                           | Status is always conveyed by text. Use a live region only if dynamically announcing a change.                                                                |
 | Metric                | `<div class="oj-metric"><span class="oj-metric-label">Storage saved</span><strong class="oj-metric-value oj-mono">2.4 GB</strong><span class="oj-metric-hint">This month</span></div>`                   | Compose `.oj-panel.oj-metric-card` around the metric                                                   | Keep label, value and unit explicit. Consumer owns calculations/trends.                                                                                      |
 | Path display          | `<span class="oj-path">/Users/example/exports</span>`                                                                                                                                                    | Technical mono string                                                                                  | Full path remains available; do not turn it into an unlabeled icon.                                                                                          |
+
+### Bullet list
+
+Use `oj-bullet-list` on a native unordered list for text with visible points. Items use plain `<li>` elements. Wrapped lines align with the item text; long values wrap within the available width. Spacing, typography and marker colors use shared tokens, and logical indentation follows the text direction.
+
+```html
+<ul class="oj-bullet-list">
+  <li>Keep originals</li>
+  <li>
+    Prepare the export
+    <ul class="oj-bullet-list">
+      <li>Inspect image dimensions</li>
+      <li>Choose an output folder</li>
+    </ul>
+  </li>
+  <li>Read the <a class="oj-link" href="/guide/">export guide</a>.</li>
+</ul>
+```
+
+Apply `oj-bullet-list` to each nested `<ul>` for an indented circle marker. Keep nested lists inside their parent `<li>`. The list needs no initializer, custom events or item classes. Links and controls retain their native keyboard behavior. Insert untrusted item text with `textContent`.
 
 ## Feedback and progress
 
@@ -131,6 +152,7 @@ import {
   initDropdowns,
   initTooltips,
   initDialogs,
+  initCountUps,
 } from 'oj-designsystem';
 
 const cleanup = initOJ(document.querySelector('#workspace'));
@@ -308,6 +330,66 @@ All prose styles are opt-in. Do not add a global article reset in the consumer.
 | Site header               | `<header class="oj-site-header"><div class="oj-container"><a class="oj-link" href="/">Journal</a><nav class="oj-nav" aria-label="Main">…</nav></div></header>`                                                       | Responsive wrapping                                                    | Consumer supplies links, branding and any advanced mobile disclosure logic.                                                                                             |
 | Site footer               | `<footer class="oj-site-footer"><nav class="oj-cluster" aria-label="Footer">…</nav><small>© Example</small></footer>`                                                                                                | Generic footer grouping                                                | Name navigation groups; legal text stays consumer-owned.                                                                                                                |
 | Accordion                 | `<details class="oj-accordion"><summary>Supported formats</summary><div class="oj-accordion-body"><p>JPEG, PNG, WebP and AVIF.</p></div></details>`                                                                  | Native open/closed                                                     | Use native details when disclosure is needed. No custom JavaScript required.                                                                                            |
+
+### Big Numbers website section
+
+Use a named `section` and a native `dl` for a row of prominent statistics. Each `oj-big-number` groups its `dt.oj-big-number-label` with its `dd.oj-big-number-value`. The number appears above the label; the semantic term/value order is preserved. The grid adapts to available width, and the number size follows the width of its own item. Add `oj-container` around the list when it should align with the website's content width.
+
+```html
+<section class="oj-big-number-section" aria-label="Recherche in Zahlen">
+  <div class="oj-container">
+    <dl class="oj-big-number-list">
+      <div class="oj-big-number">
+        <dt class="oj-big-number-label">Stunden Videomaterial analysiert</dt>
+        <dd class="oj-big-number-value">
+          <span
+            data-oj-count-up="1000"
+            data-oj-count-locale="de-DE"
+            data-oj-count-suffix="h"
+            >1.000h</span
+          >
+          <span class="oj-big-number-suffix">+</span>
+        </dd>
+      </div>
+      <div class="oj-big-number">
+        <dt class="oj-big-number-label">Texte/Transkripte analysiert</dt>
+        <dd class="oj-big-number-value">
+          <span
+            data-oj-count-up="30000"
+            data-oj-count-locale="de-DE"
+            data-oj-count-delay="90"
+            >30.000</span
+          >
+          <span class="oj-big-number-suffix">+</span>
+        </dd>
+      </div>
+      <div class="oj-big-number">
+        <dt class="oj-big-number-label">Websites ausgewertet</dt>
+        <dd class="oj-big-number-value">
+          <span
+            data-oj-count-up="10000"
+            data-oj-count-locale="de-DE"
+            data-oj-count-delay="180"
+            >10.000</span
+          >
+          <span class="oj-big-number-suffix">+</span>
+        </dd>
+      </div>
+    </dl>
+  </div>
+</section>
+```
+
+```js
+import { initCountUps } from 'oj-designsystem';
+const cleanup = initCountUps(document.querySelector('.oj-big-number-section'));
+// Or call initOJ() once for all declarative components after mounting.
+// cleanup() before replacing/removing the owned section.
+```
+
+`oj-big-number-suffix` displays a small accent-colored suffix such as `+`. Keep it as real text so its meaning remains accessible. Static values need no attributes or initializer. `--oj-big-number-min` controls the minimum grid item width (default `13rem`); `--oj-big-number-size` overrides the responsive number size. Use shared typography/spacing/color tokens for other theme changes.
+
+Count-up attributes, fallback behavior and lifecycle are documented in [JS-API](JS-API.md#count-up-animation). The examples above are illustrative values; the consumer supplies the labels and verified totals.
 
 ## Composition, testing and boundaries
 

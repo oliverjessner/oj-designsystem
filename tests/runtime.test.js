@@ -123,6 +123,7 @@ describe('public initialization', () => {
     expect(() => runtime.initDropdowns()()).not.toThrow();
     expect(() => runtime.initTooltips()()).not.toThrow();
     expect(() => runtime.initDialogs()()).not.toThrow();
+    expect(() => runtime.initCountUps()()).not.toThrow();
   });
 
   it('scopes enhancement to the requested root and includes the root itself', () => {

@@ -5,6 +5,7 @@ export function initOJ(root?: Scope): Cleanup;
 export function initTabs(root?: Scope): Cleanup;
 export function initDropdowns(root?: Scope): Cleanup;
 export function initTooltips(root?: Scope): Cleanup;
+export function initCountUps(root?: Scope): Cleanup;
 export function initDialogs(root?: Scope): Cleanup;
 export interface DialogOptions {
   root?: Scope;

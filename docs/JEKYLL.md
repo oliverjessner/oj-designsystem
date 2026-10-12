@@ -32,3 +32,9 @@ In a layout:
 ```
 
 Use `relative_url` for sites under a `baseurl`. CSS font paths resolve relative to the stylesheet automatically. Omit the JavaScript import when using only CSS components. If the site already has a bundler, use normal package imports instead of copying. Browser imports cannot resolve the bare npm specifier without a bundler/import map; the static example deliberately imports the copied ESM URL.
+
+## Big Numbers section and animation
+
+Use the [Big Numbers markup](COMPONENTS.md#big-numbers-website-section) in a reusable include. Loop over consumer-owned metrics and escape every label, final value, target and formatting attribute. The display value is authored localized text (`1.000h`), while `data-oj-count-up` is an ungrouped numeric target (`1000`). Supply `data-oj-count-locale="de-DE"` and `data-oj-count-suffix="h"` to match that display during animation. Add `oj-big-number-suffix` for a separate, smaller `+`.
+
+The existing copied-ESM `initOJ()` call above discovers these counters. For a section-only integration, import `initCountUps` from the same copied `index.js` URL and initialize the mounted section instead. Keep its cleanup handle before replacing the section. Neither path requires a page-specific animation script or font/CDN dependency; the library owns viewport detection, formatting, reduced-motion behavior and cleanup.
