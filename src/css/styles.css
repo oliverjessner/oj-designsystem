@@ -19,4 +19,7 @@
 @import './components/toast.css';
 @import './components/dropzone.css';
 @import './components/prose.css';
+@import './components/website-sections.css';
+@import './components/steps.css';
+@import './components/video-card.css';
 @import './utilities.css';

@@ -1,0 +1,49 @@
+.oj-steps {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(min(100%, var(--oj-step-min, 14rem)), 1fr)
+  );
+  gap: var(--oj-space-6);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.oj-step {
+  min-inline-size: 0;
+  padding-block-start: var(--oj-space-5);
+  border-block-start: 1px solid var(--oj-border-strong);
+  overflow-wrap: anywhere;
+}
+.oj-step-number {
+  display: block;
+  margin-block-end: var(--oj-space-4);
+  color: var(--oj-accent-text);
+  font-family: var(--oj-font-mono);
+  font-size: var(--oj-text-xl);
+  font-variant-numeric: tabular-nums;
+}
+.oj-step-title {
+  margin: 0 0 var(--oj-space-2);
+  color: var(--oj-text);
+  font-family: var(--oj-font-sans);
+  font-size: var(--oj-text-lg);
+  font-weight: var(--oj-weight-semibold);
+  line-height: var(--oj-leading-tight);
+  text-wrap: balance;
+}
+.oj-step-description {
+  margin: 0;
+  color: var(--oj-text-soft);
+  font-size: var(--oj-text-md);
+  line-height: var(--oj-leading-relaxed);
+}
+.oj-steps-vertical {
+  grid-template-columns: minmax(0, 1fr);
+}
+.oj-steps-vertical > .oj-step {
+  padding-block: var(--oj-space-2);
+  padding-inline-start: var(--oj-space-5);
+  border-block-start: 0;
+  border-inline-start: 1px solid var(--oj-border-strong);
+}

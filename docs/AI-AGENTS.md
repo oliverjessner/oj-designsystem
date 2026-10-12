@@ -139,6 +139,11 @@ Need tabs?         → oj-tabs
 Need status?       → oj-status
 Need a table?      → oj-table
 Need big numbers? → oj-big-number-section + oj-big-number-list
+Need a website intro? → oj-section-intro + oj-section-title + oj-lead
+Need a hero?      → oj-hero + oj-display
+Need a split CTA? → oj-split-section
+Need video?       → oj-card oj-video-card + native controls
+Need steps?       → ol.oj-steps + li.oj-step
 Need a dialog?     → oj-dialog
 Need an icon?      → Font Awesome
 Need a color?      → use an oj token

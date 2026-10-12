@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en" data-oj-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>OJ website component verification</title>
+    <link rel="stylesheet" href="/dist/styles.css" />
+  </head>
+  <body class="oj-site">
+    <main class="oj-container oj-stack">
+      <section class="oj-hero" aria-labelledby="website-hero-title">
+        <div class="oj-hero-grid">
+          <div class="oj-hero-copy">
+            <p class="oj-kicker">Independent research</p>
+            <h1 class="oj-display" id="website-hero-title">
+              Understand technology.
+              <span class="oj-display-accent">Build useful things.</span>
+            </h1>
+            <p class="oj-lead">
+              Turn open sources and careful analysis into a clear view of
+              digital platforms.
+            </p>
+            <div class="oj-hero-actions">
+              <a class="oj-button oj-button-primary" href="#website-video"
+                >Explore the method video</a
+              ><a class="oj-button oj-button-secondary" href="#website-method"
+                >Read the research method</a
+              >
+            </div>
+          </div>
+          <figure class="oj-hero-media">
+            <img
+              src="/stories/assets/overview.svg"
+              alt="Research overview with three analysis panels"
+              width="720"
+              height="540"
+            />
+          </figure>
+        </div>
+      </section>
+      <section class="oj-section" aria-labelledby="website-intro-title">
+        <header class="oj-section-intro oj-section-intro-center">
+          <p class="oj-kicker">Selected findings</p>
+          <h2 class="oj-section-title" id="website-intro-title">
+            Make room for the evidence.
+          </h2>
+          <p class="oj-lead">
+            A clear question and a readable explanation keep the sources and
+            findings connected.
+          </p>
+        </header>
+        <p class="oj-text">The section introduction precedes its content.</p>
+      </section>
+      <section
+        class="oj-split-section oj-split-section-reverse oj-split-section-callout"
+        aria-labelledby="website-split-title"
+      >
+        <div class="oj-split-section-grid">
+          <div class="oj-split-section-copy">
+            <header class="oj-section-intro">
+              <p class="oj-kicker">A useful foundation</p>
+              <h2 class="oj-section-title" id="website-split-title">
+                Make complex systems readable.
+              </h2>
+              <p class="oj-lead">
+                Connect the evidence and explain the limits.
+              </p>
+            </header>
+            <ul class="oj-bullet-list">
+              <li>Start with a specific question</li>
+              <li>Validate the source material</li>
+            </ul>
+            <div class="oj-split-section-actions">
+              <a class="oj-button oj-button-primary" href="#website-method"
+                >Explore the method</a
+              >
+            </div>
+          </div>
+          <figure class="oj-split-section-media">
+            <img
+              src="/stories/assets/overview.svg"
+              alt="Organized research material"
+              width="720"
+              height="540"
+            />
+          </figure>
+        </div>
+      </section>
+      <section
+        class="oj-section"
+        aria-labelledby="website-method"
+        id="website-steps"
+      >
+        <header class="oj-section-intro">
+          <p class="oj-kicker">Method</p>
+          <h2 class="oj-section-title" id="website-method">
+            A clear sequence.
+          </h2>
+        </header>
+        <ol class="oj-steps" role="list">
+          <li class="oj-step">
+            <span class="oj-step-number" aria-hidden="true">01</span>
+            <h3 class="oj-step-title">Collect</h3>
+            <p class="oj-step-description">
+              Gather open sources and record their origin.
+            </p>
+          </li>
+          <li class="oj-step">
+            <span class="oj-step-number" aria-hidden="true">02</span>
+            <h3 class="oj-step-title">Understand</h3>
+            <p class="oj-step-description">
+              Structure the material and define the question.
+            </p>
+          </li>
+          <li class="oj-step">
+            <span class="oj-step-number" aria-hidden="true">03</span>
+            <h3 class="oj-step-title">Analyze</h3>
+            <p class="oj-step-description">
+              Compare signals and describe their limits.
+            </p>
+          </li>
+          <li class="oj-step">
+            <span class="oj-step-number" aria-hidden="true">04</span>
+            <h3 class="oj-step-title">Validate</h3>
+            <p class="oj-step-description">
+              Check findings against independent evidence.
+            </p>
+          </li>
+        </ol>
+      </section>
+      <article
+        class="oj-card oj-video-card"
+        data-oj-video-preview
+        aria-labelledby="website-video-title"
+        id="website-video"
+      >
+        <video
+          class="oj-video-card-media"
+          controls
+          playsinline
+          preload="metadata"
+          poster="/stories/assets/overview.svg"
+          aria-label="Silent sample: three fading bands"
+        >
+          <source src="/stories/assets/sample.mp4" type="video/mp4" />
+          <track
+            kind="captions"
+            src="/stories/assets/sample.vtt"
+            srclang="en"
+            label="English"
+          />
+          <a href="/stories/assets/sample.mp4">Download sample video</a>
+        </video>
+        <div class="oj-card-body">
+          <p class="oj-card-meta">Local sample · 8 seconds · silent</p>
+          <h2 class="oj-card-title" id="website-video-title">
+            Three fading bands
+          </h2>
+          <p class="oj-text">Original local media for playback verification.</p>
+          <div class="oj-card-actions">
+            <button
+              class="oj-button oj-button-secondary"
+              type="button"
+              data-oj-video-toggle
+              hidden
+            >
+              Play preview</button
+            ><a class="oj-link" href="/stories/assets/sample.mp4"
+              >Download video</a
+            >
+          </div>
+        </div>
+      </article>
+    </main>
+    <script type="module">
+      import * as oj from 'oj-designsystem';
+      window.oj = oj;
+      window.cleanupOJ = oj.initOJ();
+    </script>
+  </body>
+</html>

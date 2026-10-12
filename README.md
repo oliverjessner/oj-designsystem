@@ -81,6 +81,7 @@ import {
   initTooltips,
   initDialogs,
   initCountUps,
+  initVideoPreviews,
   openDialog,
   closeDialog,
   confirmDialog,
@@ -91,6 +92,8 @@ import {
 Explicit scoped initialization is idempotent and returns cleanup. Tabs provide roving focus/arrows/Home/End; menus provide keyboard/outside/Escape dismissal; tooltips describe existing accessible triggers; native modal dialogs preserve focus; toasts stack, announce safely and pause dismissal on hover/focus. User strings are rendered with `textContent`. Public events use `oj:*`. [JS-API](docs/JS-API.md) describes all behavior/events and ownership.
 
 ## Website usage
+
+Website components include [Section Intro, Hero / Display Headline, Split / CTA Section, Video Card and Steps](docs/COMPONENTS.md#section-intro). These CSS-first compositions use existing buttons, cards and typography tokens. Video Cards keep native controls and optionally use `initVideoPreviews` (included in `initOJ`) for muted viewport playback with a pause button and reduced-motion support. Examples and variants live under **Website** in Storybook.
 
 ```html
 <header class="oj-site-header">…</header>

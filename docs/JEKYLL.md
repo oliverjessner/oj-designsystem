@@ -33,6 +33,10 @@ In a layout:
 
 Use `relative_url` for sites under a `baseurl`. CSS font paths resolve relative to the stylesheet automatically. Omit the JavaScript import when using only CSS components. If the site already has a bundler, use normal package imports instead of copying. Browser imports cannot resolve the bare npm specifier without a bundler/import map; the static example deliberately imports the copied ESM URL.
 
+## Website sections and video cards
+
+Section Intro, Hero, Split / CTA and Steps use the [documented HTML classes](COMPONENTS.md#section-intro) with the copied stylesheet alone. Video Cards use native `<video>` with consumer-owned local source/poster/caption URLs passed through `relative_url`. The original Storybook clip is a development fixture and is not distributed in the package. The copied-ESM `initOJ()` call also discovers optional `data-oj-video-preview` cards; no additional video runtime or CDN is needed.
+
 ## Big Numbers section and animation
 
 Use the [Big Numbers markup](COMPONENTS.md#big-numbers-website-section) in a reusable include. Loop over consumer-owned metrics and escape every label, final value, target and formatting attribute. The display value is authored localized text (`1.000h`), while `data-oj-count-up` is an ungrouped numeric target (`1000`). Supply `data-oj-count-locale="de-DE"` and `data-oj-count-suffix="h"` to match that display during animation. Add `oj-big-number-suffix` for a separate, smaller `+`.

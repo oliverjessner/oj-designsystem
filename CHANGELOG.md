@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Add Section Intro, Hero / Display Headline, Split / CTA Section, Video Card and Steps website components with responsive compositions and local Storybook media. Optional `initVideoPreviews` provides muted viewport previews with native playback fallback, a keyboard pause/play control, reduced-motion handling and reversible cleanup; `initOJ` includes it.
 - Add a responsive Big Numbers website section and scoped `initCountUps` animation with viewport triggering, locale/decimal/unit formatting, stable accessible values, reduced-motion fallback and reversible cleanup. `initOJ` discovers `data-oj-count-up` automatically.
 - Add `oj-bullet-list` for native text lists with visible points, wrapped content and nested circle markers, including Storybook examples and API documentation.
 

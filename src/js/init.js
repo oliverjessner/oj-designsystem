@@ -4,6 +4,7 @@ import { initDialogs } from './dialog.js';
 import { initDropdowns } from './dropdown.js';
 import { initTooltips } from './tooltip.js';
 import { initCountUps } from './count-up.js';
+import { initVideoPreviews } from './video-preview.js';
 
 /** Explicit, scoped progressive enhancement; no global app state. */
 export function initOJ(root) {
@@ -13,5 +14,6 @@ export function initOJ(root) {
     initTooltips(root),
     initDialogs(root),
     initCountUps(root),
+    initVideoPreviews(root),
   ]);
 }

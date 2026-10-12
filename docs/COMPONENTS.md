@@ -1,6 +1,6 @@
 # Component contracts
 
-`oj-designsystem` is CSS-first. Import `oj-designsystem/styles.css`, then use native HTML with the classes below. Import `initOJ` for declarative tabs, dropdowns, tooltips, dialog triggers and optional count-up animations. Fonts and Font Awesome are local package assets.
+`oj-designsystem` is CSS-first. Import `oj-designsystem/styles.css`, then use native HTML with the classes below. Import `initOJ` for declarative tabs, dropdowns, tooltips, dialog triggers, count-up animations and optional video previews. Fonts and Font Awesome are local package assets.
 
 Every component is shown in Storybook. Change the Accent toolbar and viewport to inspect the same markup under green, purple, blue, orange and red at desktop, laptop, tablet and mobile widths. Native `:disabled`, `:focus-visible`, `:checked`, `readonly` and `aria-invalid` are preferred to custom state classes.
 
@@ -153,6 +153,7 @@ import {
   initTooltips,
   initDialogs,
   initCountUps,
+  initVideoPreviews,
 } from 'oj-designsystem';
 
 const cleanup = initOJ(document.querySelector('#workspace'));
@@ -330,6 +331,173 @@ All prose styles are opt-in. Do not add a global article reset in the consumer.
 | Site header               | `<header class="oj-site-header"><div class="oj-container"><a class="oj-link" href="/">Journal</a><nav class="oj-nav" aria-label="Main">…</nav></div></header>`                                                       | Responsive wrapping                                                    | Consumer supplies links, branding and any advanced mobile disclosure logic.                                                                                             |
 | Site footer               | `<footer class="oj-site-footer"><nav class="oj-cluster" aria-label="Footer">…</nav><small>© Example</small></footer>`                                                                                                | Generic footer grouping                                                | Name navigation groups; legal text stays consumer-owned.                                                                                                                |
 | Accordion                 | `<details class="oj-accordion"><summary>Supported formats</summary><div class="oj-accordion-body"><p>JPEG, PNG, WebP and AVIF.</p></div></details>`                                                                  | Native open/closed                                                     | Use native details when disclosure is needed. No custom JavaScript required.                                                                                            |
+
+### Section Intro
+
+`oj-section-intro` groups optional `oj-kicker` copy, a native heading with `oj-section-title`, and optional `oj-lead` copy. It sets a readable measure and space before the section content. Use `oj-section-intro-center` for centered alignment. The heading class controls appearance; choose its HTML level from the page outline.
+
+```html
+<section class="oj-section" aria-labelledby="research-title">
+  <header class="oj-section-intro">
+    <p class="oj-kicker">Research</p>
+    <h2 class="oj-section-title" id="research-title">
+      Clear questions. Useful findings.
+    </h2>
+    <p class="oj-lead">
+      Open sources, structured analysis and careful validation.
+    </p>
+  </header>
+  <!-- section content -->
+</section>
+```
+
+`--oj-intro-width` overrides the default `--oj-prose-width` measure; `--oj-section-title-size` overrides the responsive heading size. No JavaScript is needed. Storybook: **Website / Section Intro**, left-aligned, centered and minimal.
+
+### Hero / Display Headline
+
+`oj-hero` provides website spacing and a container for a copy/media layout. `oj-hero-grid` has two columns when the section itself is at least `44rem` wide; smaller embedded sections stack even on a wide viewport. `oj-hero-copy` groups the heading, lead and actions; `oj-hero-media` contains native media. Use existing `oj-button` classes for real navigation links or actions.
+
+```html
+<section class="oj-hero" aria-labelledby="hero-title">
+  <div class="oj-container">
+    <div class="oj-hero-grid">
+      <div class="oj-hero-copy">
+        <p class="oj-kicker">Independent research</p>
+        <h1 class="oj-display" id="hero-title">
+          Understand technology.
+          <span class="oj-display-accent">Build useful things.</span>
+        </h1>
+        <p class="oj-lead">
+          Turn open sources into a clear view of digital platforms.
+        </p>
+        <div class="oj-hero-actions">
+          <a class="oj-button oj-button-primary" href="/contact/"
+            >Discuss a project</a
+          >
+        </div>
+      </div>
+      <figure class="oj-hero-media">
+        <img
+          src="/assets/research.webp"
+          alt="Research workspace"
+          width="720"
+          height="540"
+          fetchpriority="high"
+          decoding="async"
+        />
+      </figure>
+    </div>
+  </div>
+</section>
+```
+
+`oj-display` also works on a standalone native heading. It uses Comfortaa, balanced wrapping and the local tokens. `oj-display-accent` emphasizes a span with readable accent text. Override `--oj-display-size` and `--oj-display-width` for specific compositions. Add `oj-hero-center` for a centered single-column hero. For a left-aligned text-only hero, use `oj-hero-copy` directly without a grid. Supply meaningful image alt text, intrinsic dimensions and consumer-owned local media. No text rotation or JavaScript is required. Storybook: **Website / Hero**, media, centered and standalone display.
+
+### Split / CTA Section
+
+`oj-split-section` and `oj-split-section-grid` compose copy with media at the same `44rem` section-width breakpoint as Hero. Reuse Section Intro, `oj-bullet-list` and buttons inside `oj-split-section-copy`. `oj-split-section-actions` wraps action controls. `oj-split-section-media` accepts a native image, video or figure content.
+
+```html
+<section
+  class="oj-split-section oj-split-section-callout"
+  aria-labelledby="contact-title"
+>
+  <div class="oj-split-section-grid">
+    <div class="oj-split-section-copy">
+      <header class="oj-section-intro">
+        <h2 class="oj-section-title" id="contact-title">
+          Make complex systems readable.
+        </h2>
+        <p class="oj-lead">
+          A clear question is the start of a useful collaboration.
+        </p>
+      </header>
+      <div class="oj-split-section-actions">
+        <a class="oj-button oj-button-primary" href="/contact/"
+          >Start a conversation</a
+        >
+      </div>
+    </div>
+    <figure class="oj-split-section-media">
+      <img
+        src="/assets/workspace.webp"
+        alt="Research workspace"
+        width="720"
+        height="540"
+        loading="lazy"
+        decoding="async"
+      />
+    </figure>
+  </div>
+</section>
+```
+
+`oj-split-section-callout` adds an elevated surface, border and inset spacing for a CTA. `oj-split-section-reverse` places the media visually first on wide sections and keeps the authored copy-first order when stacked. CSS placement does not change keyboard/reading order; use noninteractive media in the reversed composition, or author a DOM order suitable for any interactive media. No JavaScript is needed. Storybook: **Website / Split Section**, default, reversed and CTA.
+
+### Video Card
+
+Compose `oj-card oj-video-card` with native `video.oj-video-card-media`, then the existing `oj-card-body`, `oj-card-meta`, `oj-card-title` and `oj-card-actions`. The default media area is `16 / 9`; `oj-video-card-portrait` uses `9 / 16`, and `oj-video-card-square` uses `1 / 1`. `--oj-video-ratio` accepts another CSS aspect ratio. Media uses `object-fit: contain` so controls/captions stay visible.
+
+```html
+<article class="oj-card oj-video-card" aria-labelledby="video-title">
+  <video
+    class="oj-video-card-media"
+    controls
+    playsinline
+    preload="metadata"
+    poster="/assets/video-poster.webp"
+    aria-label="Introduction to the research method"
+  >
+    <source src="/assets/introduction.mp4" type="video/mp4" />
+    <track
+      kind="captions"
+      src="/assets/introduction.en.vtt"
+      srclang="en"
+      label="English"
+    />
+    <a href="/assets/introduction.mp4">Download video</a>
+  </video>
+  <div class="oj-card-body">
+    <p class="oj-card-meta">Introduction · 2 minutes</p>
+    <h3 class="oj-card-title" id="video-title">From source to finding</h3>
+    <p class="oj-text">An overview of the method.</p>
+  </div>
+</article>
+```
+
+Native playback needs no library JavaScript. Keep controls available and supply captions for speech/audio content plus appropriate descriptions/transcripts. Avoid placing a video with controls inside a link. Source files, posters, tracks and content remain consumer-owned; the library downloads no external video SDKs.
+
+For the optional preview, add `data-oj-video-preview` to the card and a real `<button type="button" class="oj-button oj-button-secondary" data-oj-video-toggle hidden>Play preview</button>` inside its actions. `initVideoPreviews` (included in `initOJ`) reveals the pause/play button, manages muted viewport playback and respects reduced motion. Omit native `autoplay`; the initializer owns automatic playback. Full behavior and localization: [Video previews](JS-API.md#video-previews). Storybook: **Website / Video Card**, native formats and viewport preview, with original local media and captions.
+
+### Steps / Method
+
+Use a native ordered list, `ol.oj-steps`, with `li.oj-step` children. `role="list"` keeps list semantics in browsers that hide them when markers are removed. `oj-step-number` contains a visible, authored sequence label such as `01`; hide this decorative duplicate with `aria-hidden="true"`. Step headings use the level below the section heading.
+
+```html
+<section class="oj-section" aria-labelledby="method-title">
+  <header class="oj-section-intro">
+    <h2 class="oj-section-title" id="method-title">A clear sequence.</h2>
+  </header>
+  <ol class="oj-steps" role="list">
+    <li class="oj-step">
+      <span class="oj-step-number" aria-hidden="true">01</span>
+      <h3 class="oj-step-title">Collect</h3>
+      <p class="oj-step-description">
+        Gather relevant sources and record their origin.
+      </p>
+    </li>
+    <li class="oj-step">
+      <span class="oj-step-number" aria-hidden="true">02</span>
+      <h3 class="oj-step-title">Validate</h3>
+      <p class="oj-step-description">
+        Check findings against independent evidence.
+      </p>
+    </li>
+  </ol>
+</section>
+```
+
+The grid adapts to available width. `--oj-step-min` overrides its default `14rem` minimum item width. `oj-steps-vertical` stacks the steps with a logical inline rule. This is a content sequence, not an interactive form stepper; navigation, current-step state and workflow logic belong to the consumer. No JavaScript is needed. Storybook: **Website / Steps**, Method and Vertical.
 
 ### Big Numbers website section
 

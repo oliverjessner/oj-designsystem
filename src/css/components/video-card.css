@@ -1,0 +1,26 @@
+.oj-video-card {
+  min-inline-size: 0;
+}
+.oj-video-card-media {
+  display: block;
+  inline-size: 100%;
+  block-size: auto;
+  aspect-ratio: var(--oj-video-ratio, 16 / 9);
+  object-fit: contain;
+  background: var(--oj-bg);
+  border-block-end: 1px solid var(--oj-border);
+}
+.oj-video-card-portrait {
+  --oj-video-ratio: 9 / 16;
+}
+.oj-video-card-square {
+  --oj-video-ratio: 1;
+}
+.oj-video-card .oj-card-body {
+  overflow-wrap: anywhere;
+}
+.oj-video-card .oj-card-actions > .oj-button {
+  max-inline-size: 100%;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}

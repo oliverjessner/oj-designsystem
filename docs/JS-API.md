@@ -10,6 +10,7 @@ import {
   initTooltips,
   initDialogs,
   initCountUps,
+  initVideoPreviews,
   openDialog,
   closeDialog,
   confirmDialog,
@@ -74,6 +75,48 @@ const confirmed = await confirmDialog({
 ```
 
 The browser handles modal focus/inertness/Escape. Helpers preserve an opener and restore focus if it remains connected; autofocus is honored. `confirmDialog` inserts safe text, focuses Cancel, resolves false for cancellation/Escape, and removes temporary markup/listeners. `oj:open`/`oj:close` bubble from dialog: `{ dialog, returnValue }`. Do not nest native dialogs in other dialogs or provide an inert root.
+
+## Video previews
+
+`initVideoPreviews(root?)` discovers cards with `data-oj-video-preview`, including the root itself. It is included in `initOJ` and supports element, document and shadow-root scopes. A card needs its own `video.oj-video-card-media` and enabled native `button[data-oj-video-toggle]`; nested cards own their own controls. Incomplete markup or missing `IntersectionObserver` is left untouched.
+
+```html
+<article
+  class="oj-card oj-video-card"
+  data-oj-video-preview
+  data-oj-video-play-label="Vorschau abspielen"
+  data-oj-video-pause-label="Vorschau pausieren"
+>
+  <video
+    class="oj-video-card-media"
+    controls
+    playsinline
+    preload="metadata"
+    aria-label="Research introduction"
+  >
+    <source src="/assets/introduction.mp4" type="video/mp4" />
+  </video>
+  <div class="oj-card-body">
+    <h3 class="oj-card-title">Research introduction</h3>
+    <div class="oj-card-actions">
+      <button
+        type="button"
+        class="oj-button oj-button-secondary"
+        data-oj-video-toggle
+        hidden
+      >
+        Vorschau abspielen
+      </button>
+    </div>
+  </div>
+</article>
+```
+
+Initialization disables native autoplay, sets muted/loop/inline playback and reveals the authored button. Playback starts at 35% viewport intersection and pauses offscreen or in a hidden document. Reduced motion prevents automatic playback and stops an automatic preview immediately when enabled; explicit manual playback remains available. Omitting the initializer keeps native video controls as the no-JavaScript fallback. Do not author `autoplay` on preview media.
+
+The native button supports Enter/Space and never changes focus. It displays `Play preview` / `Pause preview`, or the literal localized `data-oj-video-play-label` / `data-oj-video-pause-label`. It uses `aria-controls` for the video; a missing video ID is generated. Pausing through the button or native media controls switches to manual control so scrolling back does not restart playback. Rejected autoplay or a media error pauses the preview and leaves the manual control available; promise rejections do not escape into the consumer.
+
+Runtime `data-oj-video-state` is `paused`, `loading`, `playing` or `blocked`. The initializer emits no custom events; use native media events when needed. Only the original initializer owns cleanup. Cleanup disconnects observers/listeners, cancels queued starts, pauses media, restores authored media settings, button contents/visibility, IDs/associations and card state. It leaves playback position alone and permits reinitialization. New cards are discovered by a later call, with no automatic DOM mutation observation.
 
 ## Count-up animation
 
