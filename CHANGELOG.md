@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Add `createMultiselect` with searchable native checkbox choices, selection summaries, reset, keyboard navigation and viewport-aware panels. Includes option/value setters, localized plain-text labels, typed `oj:change` events, Storybook examples and public behavior/browser coverage. Extracted from Pitchary's tag filter without product texts, badges, filtering rules or dependencies.
+
 ## 0.2.0
 
 - Add Section Intro, Hero / Display Headline, Split / CTA Section, Video Card and Steps website components with responsive compositions and local Storybook media. Optional `initVideoPreviews` provides muted viewport previews with native playback fallback, a keyboard pause/play control, reduced-motion handling and reversible cleanup; `initOJ` includes it.

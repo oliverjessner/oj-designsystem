@@ -134,6 +134,7 @@ Icon-only actions: `oj-icon-button` needs `aria-label`; Font Awesome icon gets `
 ```text
 Need a button?     → oj-button
 Need an input?     → oj-input
+Need multiselect?  → createMultiselect({ label, options, value })
 Need a panel?      → oj-panel
 Need tabs?         → oj-tabs
 Need status?       → oj-status

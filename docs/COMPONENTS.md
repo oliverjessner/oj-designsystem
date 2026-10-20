@@ -143,6 +143,16 @@ Apply `oj-bullet-list` to each nested `<ul>` for an indented circle marker. Keep
 | Skeleton              | `<div class="oj-skeleton" aria-hidden="true"></div>`                                                                                                                                                                                                                                                                      | Optional placeholder                                              | Only when useful. Announce loading in a separate status; do not expose meaningless placeholders.                                                 |
 | Dropzone              | `<div class="oj-dropzone"><label class="oj-label" for="files">Add images</label><input class="oj-input" id="files" type="file" multiple /></div>`                                                                                                                                                                         | `data-oj-state="drag-active"` / `loading`; `aria-disabled="true"` | Visual contract only. Always include a real input/button fallback and let the consumer handle files, drag events, disabled logic and validation. |
 
+## Multiselect
+
+Use `createMultiselect({ label, options, value })` for searchable multiple selection with native checkboxes. Mount the returned `node`; keep the handle for `value()`, `setValue()`, `setOptions()` and `dispose()`. It creates `.oj-field.oj-multiselect[data-oj-multiselect]` with `.oj-multiselect-trigger`, `.oj-multiselect-value`, `.oj-multiselect-panel`, `.oj-multiselect-options`, `.oj-multiselect-list`, `.oj-multiselect-option` and `.oj-multiselect-option-label`. These selectors are scoped visual hooks; update data through the handle rather than rewriting generated markup.
+
+The trigger uses `aria-expanded` / `aria-controls` and a visible field label. Search has its own label; native checkboxes belong to a named fieldset. No menu or listbox roles are applied to these form controls. Empty and no-result text uses `role="status"`; the selection summary announces updates politely. Selection persists while searching, and reset clears all values. Disabled states use native attributes. Styles use shared control, surface, border, focus, accent, radius and spacing tokens.
+
+The panel is viewport-clamped, opens above or below, responds to scroll/resize and visual-viewport changes, and scrolls if necessary. Long labels wrap; the closed summary truncates with full names in its title. Native manual popovers escape clipping ancestors where supported, with a fixed-position fallback. The component owns its lifecycle independently of `initOJ`.
+
+See the complete [options, selection, localization and event API](JS-API.md#multiselect). Storybook **Components/Multiselect** includes Search And Select (interaction test), Selected And Dynamic, Localized (long labels), Empty and Disabled examples.
+
 ## JavaScript lifecycle
 
 ```js

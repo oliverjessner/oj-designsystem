@@ -78,6 +78,7 @@ Controls/content: button variants, icon buttons, every native input type, textar
 import {
   initTabs,
   initDropdowns,
+  createMultiselect,
   initTooltips,
   initDialogs,
   initCountUps,
@@ -90,6 +91,8 @@ import {
 ```
 
 Explicit scoped initialization is idempotent and returns cleanup. Tabs provide roving focus/arrows/Home/End; menus provide keyboard/outside/Escape dismissal; tooltips describe existing accessible triggers; native modal dialogs preserve focus; toasts stack, announce safely and pause dismissal on hover/focus. User strings are rendered with `textContent`. Public events use `oj:*`. [JS-API](docs/JS-API.md) describes all behavior/events and ownership.
+
+`createMultiselect({ label, options, value })` creates a searchable checkbox multiselect with a selection summary, reset action and responsive panel. Mount its returned `node`, use `value()` / `setValue()` / `setOptions()`, listen for `oj:change`, and call `dispose()` before removal. It owns its lifecycle independently of `initOJ`. See the [Multiselect API](docs/JS-API.md#multiselect) and **Components/Multiselect** stories.
 
 ## Website usage
 

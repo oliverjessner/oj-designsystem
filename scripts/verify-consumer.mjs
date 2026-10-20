@@ -58,7 +58,7 @@ export async function verifyConsumer(tarball) {
         import assert from 'node:assert/strict';
         import { readFile } from 'node:fs/promises';
         const api = await import('oj-designsystem');
-        for (const name of ['initOJ','initTabs','initDropdowns','initTooltips','initDialogs','initCountUps','initVideoPreviews','openDialog','closeDialog','confirmDialog','toast']) assert.equal(typeof api[name], 'function');
+        for (const name of ['initOJ','initTabs','initDropdowns','createMultiselect','initTooltips','initDialogs','initCountUps','initVideoPreviews','openDialog','closeDialog','confirmDialog','toast']) assert.equal(typeof api[name], 'function');
         for (const name of ['styles.css','tokens.css','fonts.css','fontawesome.css']) await readFile(new URL(import.meta.resolve('oj-designsystem/'+name)));
         assert.equal(api.initOJ instanceof Function, true);
       `,

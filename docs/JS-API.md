@@ -7,6 +7,7 @@ import {
   initOJ,
   initTabs,
   initDropdowns,
+  createMultiselect,
   initTooltips,
   initDialogs,
   initCountUps,
@@ -51,6 +52,77 @@ All initializers accept an optional Document/Element root, include the root itse
 ```
 
 Click or Enter/Space opens. Down/Up on the trigger opens at first/last enabled item; menu Up/Down/Home/End moves focus, character typing searches items. Escape closes and returns focus; outside click closes without stealing focus; Tab closes while preserving natural navigation. Item click emits `oj:select` with `{ item, value }`; `preventDefault()` keeps the menu open. Consumers manage checkbox/radio menu state and execute actions. `oj:open`/`oj:close`: `{ trigger, menu }`. For ordinary site navigation use native links, not menu roles.
+
+## Multiselect
+
+`createMultiselect(config)` creates a native button disclosure containing a labeled search input, a fieldset of native checkboxes, an empty/no-results status and a reset button. It returns an owned handle; append `node` yourself. It is independent of `initOJ` and does not register declarative initialization.
+
+```js
+import { createMultiselect } from 'oj-designsystem';
+
+const topics = createMultiselect({
+  label: 'Topics',
+  options: [
+    { value: 'research', label: 'Research' },
+    { value: 'design', label: 'Design' },
+    { value: 'archive', label: 'Archive', disabled: true },
+  ],
+  value: ['research'],
+  description: 'Choose any number of topics.',
+});
+document.querySelector('#topic-filter').append(topics.node);
+topics.node.addEventListener('oj:change', (event) => {
+  const { value, options, source } = event.detail;
+  // Apply consumer filtering here. No OR/AND rule is built into the component.
+  console.log(value, options, source);
+});
+
+topics.value(); // ['research']; always a new array
+topics.setValue(['design']); // silent by default
+topics.setValue(['research', 'design'], { emit: true });
+topics.setOptions([{ value: 'design', label: 'Updated design' }], {
+  emit: true,
+});
+// Selection now ['design']; unknown values are removed.
+topics.open(); // requires a connected node
+topics.close(); // returns focus to the trigger if focus was inside
+// Before replacing/removing the view:
+topics.dispose();
+topics.node.remove();
+```
+
+| Config                     | Contract / default                                                                                                                                                                                                                                  |
+| -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `label`                    | Required nonempty visible label and accessible checkbox-group name.                                                                                                                                                                                 |
+| `options`                  | Array of `{ value: string, label: string, disabled?: boolean }`; default `[]`. Values must be unique. Invalid/duplicate options throw `TypeError` before replacing anything.                                                                        |
+| `value`                    | Selected string values; default `[]`. Unknown/duplicate values are removed. Read values and summaries follow option order. Disabled options may be preselected or set through the API.                                                              |
+| `description`              | Optional visible helper text, associated with the trigger.                                                                                                                                                                                          |
+| `disabled`                 | Default `false`; disables the trigger, search, fieldset and reset. API setters still work.                                                                                                                                                          |
+| `name`                     | Optional native checkbox form-entry name; checked enabled options submit repeated entries. Native form reset restores checkbox defaults from the latest option rendering and emits a change if needed. `setValue()` does not change those defaults. |
+| `document`                 | Optional owner `Document`, defaults to `globalThis.document`. No DOM is touched merely by importing the module.                                                                                                                                     |
+| `labels`                   | Optional plain-text overrides in the table below.                                                                                                                                                                                                   |
+| `formatSelection(options)` | Optional formatter receiving a copied array of selected option snapshots. Return plain text. Default: placeholder for zero, the option label for one, `N selected` for multiple.                                                                    |
+
+| `labels` key        | Default                 |
+| ------------------- | ----------------------- |
+| `placeholder`       | `Select options`        |
+| `search`            | `Search options`        |
+| `searchPlaceholder` | `Find an option`        |
+| `reset`             | `Reset selection`       |
+| `empty`             | `No options available.` |
+| `noResults`         | `No options found.`     |
+
+All external labels, descriptions, option values and formatter results are literal text, never HTML. Supply all labels and `formatSelection` to localize the component; no locale is inferred. Full selected names remain available in the trigger's title, and its summary is a polite live region. CSS uses shared tokens and inherited accent; there are no product-specific classes or colors.
+
+`value()` returns a detached array. `setValue(values, { emit?: boolean })` replaces selection. `setOptions(options, { emit?: boolean })` replaces options, retains selected values still present, reapplies the current search and preserves focused choices by value when possible. If the focused choice disappears or becomes unavailable, focus moves to search (or the panel for an empty list). Both setters are silent by default; `{ emit: true }` emits only if the canonical selected values or their order change. Label-only changes do not emit.
+
+`oj:change` bubbles from `handle.node`, is not cancelable, and contains `{ value: string[], options: MultiselectOption[], source: 'input' | 'reset' | 'api' | 'options' }`. `options` contains only selected option snapshots. User checkbox changes and reset notify immediately. Search, opening, closing and construction do not emit selection events. Event payloads and formatter arguments can be mutated without changing internal state.
+
+Click/Enter/Space opens and focuses search; trigger Down opens at search, Up at the last enabled visible checkbox. Search Down/Up moves to the first/last visible choice; checkbox Up/Down and Home/End move through enabled visible choices. Space uses native checkbox activation; Enter also toggles a focused checkbox without submitting a form. Search Home/End, Space and text editing keep their native meaning. Selection keeps the panel open. Reset clears the entire selection, including filtered/disabled choices, preserves the query and moves focus to search. Escape closes and returns focus, including inside native dialogs. Tab/Shift+Tab use native order; leaving the component or an outside pointer closes without trapping or stealing focus.
+
+Search trims whitespace and compares case-insensitive NFC-normalized labels. It does not remove accents or change selected values. Empty lists can open to expose their status, with search/reset disabled. The panel uses fixed positioning, clamps to the visual viewport, flips above when appropriate and updates on scroll/resize, including on-screen keyboard/zoom viewport changes. Native manual popovers escape clipping ancestors where available; fixed positioning remains the fallback. Long labels wrap; tall panels scroll.
+
+`dispose()` is idempotent: it closes the panel and releases document/window/visual-viewport listeners and deferred focus work. It leaves the generated node in place for its owner to remove. After disposal, opening and setters are inert; create a fresh handle to replace it. Each factory call owns its own node, IDs and listeners.
 
 ## Tooltip
 

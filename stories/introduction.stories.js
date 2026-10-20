@@ -44,10 +44,10 @@ export const Overview = story(`
       </li>
 
       <li>
-        <a class="oj-link" href="https://oliverjessner.at/Billly/" target="_blank" rel="noopener noreferrer">
-          <strong>Billly</strong>
+        <a class="oj-link" href="https://oliverjessner.at/Pitchary/" target="_blank" rel="noopener noreferrer">
+          <strong>Pitchary</strong>
         </a>
-        — lightweight productivity software
+        — A full CRM with OCR on the bill
       </li>
 
       <li>
