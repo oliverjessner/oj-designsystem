@@ -63,6 +63,8 @@
   color: inherit;
   font: inherit;
   cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
 }
 .oj-table th[aria-sort='ascending'],
 .oj-table th[aria-sort='descending'] {

@@ -19,6 +19,8 @@
   font-size: var(--oj-text-sm);
   font-weight: var(--oj-weight-semibold);
   cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
 }
 .oj-tab:hover {
   background: var(--oj-surface-hover);

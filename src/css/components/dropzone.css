@@ -49,6 +49,8 @@
   font-size: var(--oj-text-sm);
   font-weight: var(--oj-weight-semibold);
   cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
 }
 .oj-accordion[open] summary {
   border-block-end: 1px solid var(--oj-border);

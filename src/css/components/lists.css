@@ -48,6 +48,11 @@ a.oj-list-item {
   text-decoration: none;
   cursor: pointer;
 }
+button.oj-list-item,
+a.oj-list-item[href] {
+  -webkit-user-select: none;
+  user-select: none;
+}
 .oj-list-item:last-child {
   border-block-end: 0;
 }

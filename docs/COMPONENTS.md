@@ -25,6 +25,32 @@ Every component is shown in Storybook. Change the Accent toolbar and viewport to
 
 `oj-scroll-area` opts into scrolling with subtle scrollbars and a stable gutter: `<div class="oj-scroll-area" tabindex="0" role="region" aria-label="Export log">…</div>`. The consumer sets any height constraint. Name and make a scroll-only region keyboard focusable when needed; keep its content readable and focus outlines visible. Scrollbars are not restyled globally.
 
+## Text selection policy
+
+Selection follows the element's purpose. Action labels use `-webkit-user-select: none` and `user-select: none` in their component stylesheet, so clicking or dragging across a control does not select its label. This includes buttons and icon buttons, tabs, segmented radio labels, checkbox/radio labels (`oj-check`), switches, menu choices, navigation and pagination controls, interactive list items and tags, table sort buttons and accordion summaries. Disabled and loading controls follow the same policy.
+
+Information remains selectable: headings, prose, field labels and descriptions, validation errors, alerts, tooltip and toast text, table headers/cells (including selected rows), code, logs, paths, static list items, badges and tags. Ordinary `oj-link` links in content remain selectable. Inputs and textareas keep native text selection, including `readonly` values and the multiselect search input. A table's sort button is a control; the rest of its data remains copyable.
+
+Use a native `<button class="oj-tag">` for a tag action, `<a class="oj-tag" href="…">` for a destination and `<span class="oj-tag">` for metadata. Only the button and destination variants suppress label selection; static tags, anchors without `href` and badges explicitly use `user-select: text`. Containers such as navigation, pagination, dropdown panels, tab panels and dropzones do not suppress selection for their entire subtree.
+
+Place copyable information beside native action buttons and links, outside the action element. Browsers can restrict direct pointer selection of descendants inside these native controls even when both the control and its descendants use `user-select: text`. A selectable badge or tag declaration cannot remove that native browser limitation.
+
+Keep supporting information in the existing content classes. For example, an `oj-helper` nested in an `oj-check` or `oj-switch` label remains selectable even though the surrounding choice label suppresses selection:
+
+```html
+<label class="oj-check">
+  <input class="oj-checkbox" type="checkbox" aria-describedby="metadata-help" />
+  <span>
+    Preserve metadata
+    <span class="oj-helper" id="metadata-help"
+      >Includes the original capture date.</span
+    >
+  </span>
+</label>
+```
+
+The policy uses existing component selectors only. Do not apply selection suppression to `body`, `*`, `oj-root`, `oj-app`, `oj-site` or other broad containers. It does not change activation, focus, keyboard handling, disabled behavior or accessibility semantics. Review **Foundations/Selection** in Storybook by dragging across controls and information, then selecting editable and readonly field values with the keyboard.
+
 ## Buttons and forms
 
 ### Button

@@ -13,6 +13,11 @@
   font-weight: var(--oj-weight-semibold);
   line-height: var(--oj-leading-tight);
 }
+.oj-badge,
+.oj-tag:where(:not(button, a[href])) {
+  -webkit-user-select: text;
+  user-select: text;
+}
 .oj-badge-accent {
   color: var(--oj-accent-text);
   background: var(--oj-accent-soft);
@@ -39,6 +44,11 @@ a.oj-tag {
   font-family: var(--oj-font-sans);
   cursor: pointer;
   text-decoration: none;
+}
+button.oj-tag,
+a.oj-tag[href] {
+  -webkit-user-select: none;
+  user-select: none;
 }
 button.oj-tag:hover,
 a.oj-tag:hover {

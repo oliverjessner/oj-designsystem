@@ -12,6 +12,14 @@ Target WCAG 2.2 AA for the provided component contracts in current Chromium, Fir
 - Native dialogs need a heading/name, sensible autofocus and a trigger to restore focus to. Essential information must remain visible rather than live solely in tooltip/toast.
 - Keep focus outlines. App-specific motion also needs a reduced-motion rule; library controls disable their own animation. Wrapping layouts and scrolling table/code regions must not clip focus outlines.
 
+## Text selection
+
+Controls suppress accidental mouse selection of their labels with both `-webkit-user-select: none` and `user-select: none`. Component styles target the actual action, choice or disclosure instead of a page, root or content container. Static variants remain selectable, including static tags/badges, navigation context and table data. Text inputs and textareas preserve selection for editing and copying, including `readonly` fields. Descriptions, validation messages, alerts, tooltips, code and logs remain copyable; `oj-helper` text also remains selectable when nested in a choice label.
+
+Place copyable information outside native action buttons and links, for example as sibling metadata. Direct pointer selection of descendants inside these native controls is restricted by some browsers even with `user-select: text` on both parent and child. Keep copyable tooltip text in the separate tooltip element created by the tooltip behavior.
+
+Selection styling does not disable pointer events, change focusability or replace native control behavior. Keep the existing keyboard and accessibility contracts. The [component selection policy](COMPONENTS.md#text-selection-policy) and **Foundations/Selection** story demonstrate the control/content boundary. Browser regression tests cover pointer text selection and field keyboard selection alongside existing keyboard/interaction checks.
+
 ## Typography review
 
 The Foundations/Typography readability story shows 12px, 13px, 14px and 16px Comfortaa, long labels, punctuation, numbers and input text. Form, Table, Navigation, Prose and both example stories show it in context. Review desktop 1440, laptop 1024, tablet 768 and mobile 375/390. Small labels use stronger weight/normal leading; article prose uses 16px relaxed leading and a 68ch maximum measure. Technical paths/numbers/code use JetBrains Mono. Small copy never uses an arbitrary raw product accent.

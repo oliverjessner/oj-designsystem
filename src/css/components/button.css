@@ -17,6 +17,8 @@
   line-height: var(--oj-leading-tight);
   text-decoration: none;
   cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
   transition:
     background-color var(--oj-duration-fast) var(--oj-ease),
     border-color var(--oj-duration-fast) var(--oj-ease),

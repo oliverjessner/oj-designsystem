@@ -42,6 +42,8 @@
   text-align: start;
   text-decoration: none;
   cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
 }
 .oj-menu-item:hover,
 .oj-menu-item:focus-visible {
@@ -70,6 +72,8 @@
   border-block-start: 1px solid var(--oj-border);
 }
 .oj-tooltip {
+  -webkit-user-select: text;
+  user-select: text;
   box-sizing: border-box;
   position: fixed;
   max-inline-size: min(32ch, calc(100vw - var(--oj-space-8)));

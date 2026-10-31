@@ -9,6 +9,8 @@
   padding-inline-end: var(--oj-space-3);
   text-align: start;
   cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
 }
 .oj-multiselect-value {
   min-inline-size: 0;

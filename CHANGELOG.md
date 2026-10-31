@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Prevent accidental text selection on action controls, checkbox/radio and switch labels, tabs, segmented choices, menus, navigation links, interactive tags/list items and accordion/sort triggers. Keep information and readonly form values copyable, including helper text inside choice labels; document and test the scoped selection policy.
 - Add `createMultiselect` with searchable native checkbox choices, selection summaries, reset, keyboard navigation and viewport-aware panels. Includes option/value setters, localized plain-text labels, typed `oj:change` events, Storybook examples and public behavior/browser coverage. Extracted from Pitchary's tag filter without product texts, badges, filtering rules or dependencies.
 
 ## 0.2.0

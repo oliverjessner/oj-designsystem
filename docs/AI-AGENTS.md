@@ -130,6 +130,7 @@ Icon-only actions: `oj-icon-button` needs `aria-label`; Font Awesome icon gets `
 18. Namespace custom data attributes `data-oj-*`.
 19. Namespace public custom events `oj:*`.
 20. Keep business logic out of the design system.
+21. Suppress text selection only on actual controls in their component CSS. Keep information, static variants and text fields (including readonly values) copyable. Place copyable information outside native action buttons and links; see [Text selection policy](COMPONENTS.md#text-selection-policy).
 
 ```text
 Need a button?     → oj-button

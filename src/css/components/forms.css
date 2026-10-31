@@ -11,6 +11,8 @@
 }
 .oj-helper {
   margin: 0;
+  -webkit-user-select: text;
+  user-select: text;
   color: var(--oj-text-muted);
   font-size: var(--oj-text-xs);
   line-height: var(--oj-leading-normal);
@@ -23,6 +25,11 @@
 }
 .oj-helper-success {
   color: var(--oj-success);
+}
+.oj-input,
+.oj-textarea {
+  -webkit-user-select: text;
+  user-select: text;
 }
 .oj-input,
 .oj-select,
@@ -121,6 +128,8 @@
   font-size: var(--oj-text-sm);
   line-height: var(--oj-leading-normal);
   cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
 }
 .oj-checkbox,
 .oj-radio {
@@ -147,6 +156,8 @@
   color: var(--oj-text-soft);
   font-size: var(--oj-text-sm);
   cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
   min-block-size: var(--oj-control-height);
 }
 .oj-switch input {
@@ -221,6 +232,8 @@
   position: relative;
   display: inline-flex;
   cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
 }
 .oj-segmented input {
   position: absolute;
