@@ -148,7 +148,8 @@ export function createMultiselect(config) {
     );
     panel.style.width = `${panelWidth}px`;
     panel.style.left = `${Math.max(left + gap, Math.min(anchor.left, left + width - panelWidth - gap))}px`;
-    panel.style.maxHeight = `${Math.max(1, height - gap * 2)}px`;
+    // scrollHeight includes clipped content. Temporarily expanding maxHeight
+    // would clamp scrollTop during a scroll and hide the final options/reset.
     const below = Math.max(0, top + height - anchor.bottom - gap * 2);
     const above = Math.max(0, anchor.top - top - gap * 2);
     const onTop = below < Math.min(panel.scrollHeight, 320) && above > below;
@@ -239,14 +240,27 @@ export function createMultiselect(config) {
     trigger.setAttribute('aria-expanded', 'true');
     node.setAttribute('data-oj-state', 'open');
     position();
-    safeFocus(
-      (last ? enabledChoices().at(-1) : !search.disabled && search) || panel,
-    );
+    const target =
+      (last ? enabledChoices().at(-1) : !search.disabled && search) || panel;
+    safeFocus(target);
+    if (last && target !== panel) target.scrollIntoView?.({ block: 'nearest' });
   }
 
   renderOptions();
   update([], false);
   close();
+  listen(
+    trigger,
+    'mousedown',
+    (event) => {
+      if (event.button !== 0) return;
+      // Safari otherwise focuses a scrollable ancestor before click, causing
+      // outside-focus dismissal followed by an accidental reopen.
+      event.preventDefault();
+      safeFocus(trigger);
+    },
+    cleanup,
+  );
   listen(trigger, 'click', () => (opened ? close(true) : open()), cleanup);
   listen(
     trigger,
@@ -327,6 +341,7 @@ export function createMultiselect(config) {
       } else if (next) {
         event.preventDefault();
         safeFocus(next);
+        next.scrollIntoView?.({ block: 'nearest' });
       }
     },
     cleanup,

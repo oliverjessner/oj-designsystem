@@ -116,3 +116,13 @@ export const Disabled = example(
   { disabled: true, value: ['design'] },
   'A disabled component keeps its selection visible and uses native disabled controls.',
 );
+export const LongList = example(
+  {
+    options: Array.from({ length: 40 }, (_, index) => ({
+      value: String(index),
+      label: `Option ${index + 1} with a longer descriptive label`,
+    })),
+    value: ['0'],
+  },
+  'Scroll through a long list to reach its final choices and reset button. Internal scrolling preserves the panel position and scroll offset.',
+);

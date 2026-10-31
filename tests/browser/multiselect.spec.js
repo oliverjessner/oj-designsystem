@@ -220,6 +220,49 @@ test('panels fit 240px to desktop widths, flip upward, follow scroll and escape 
   await page.screenshot({ path: 'test-results/multiselect-mobile.png' });
 });
 
+test('long lists keep their scroll position and expose the last option and reset control', async ({
+  page,
+}) => {
+  const trigger = page.locator('.oj-multiselect-trigger');
+  const panel = page.locator('.oj-multiselect-panel');
+  const reset = page.getByRole('button', { name: 'Reset selection' });
+  const last = page.getByRole('checkbox', {
+    name: 'Long option 39 with a descriptive label',
+    exact: true,
+  });
+  await page.evaluate(() => {
+    const host = document.querySelector('#multiselect-demo');
+    host.tabIndex = 0;
+    host.style.cssText =
+      'position:fixed;top:150px;left:8px;width:280px;height:140px;overflow:auto';
+    window.picker.setOptions(
+      Array.from({ length: 40 }, (_, index) => ({
+        value: String(index),
+        label: `Long option ${index} with a descriptive label`,
+      })),
+    );
+  });
+  for (const width of [1440, 320]) {
+    await page.setViewportSize({ width, height: 700 });
+    await page.evaluate(() => window.picker.setValue(['0']));
+    await trigger.click();
+    await panel.hover();
+    await page.mouse.wheel(0, 10000);
+    await expect(reset).toBeInViewport();
+    await expect(last).toBeInViewport();
+    await reset.click();
+    await expect(trigger).toHaveText('Select options');
+    await page.keyboard.press('Escape');
+    await trigger.press('ArrowUp');
+    await expect(last).toBeFocused();
+    await expect(last).toBeInViewport();
+    await last.check();
+    await trigger.click();
+    await expect(trigger).toBeFocused();
+    await expect(panel).toBeHidden();
+  }
+});
+
 test('open and filtered states pass accessibility checks for all accents', async ({
   page,
 }) => {

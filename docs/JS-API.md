@@ -55,7 +55,7 @@ Click or Enter/Space opens. Down/Up on the trigger opens at first/last enabled i
 
 ## Multiselect
 
-`createMultiselect(config)` creates a native button disclosure containing a labeled search input, a fieldset of native checkboxes, an empty/no-results status and a reset button. It returns an owned handle; append `node` yourself. It is independent of `initOJ` and does not register declarative initialization.
+`createMultiselect(config)` creates a native button disclosure containing a labeled search input, a fieldset of native checkboxes, an empty/no-results status and a reset button. It returns an owned handle; append `node` yourself. It is independent of `initOJ` and does not register declarative initialization. Long lists scroll without resetting their scroll offset; the final choices and reset button remain reachable.
 
 ```js
 import { createMultiselect } from 'oj-designsystem';
